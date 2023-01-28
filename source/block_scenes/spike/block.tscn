@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://w00dpqphpsp5"]
+
+[ext_resource type="Script" path="res://source/blocks/spike.gd" id="1_m82bq"]
+[ext_resource type="Texture2D" uid="uid://bnexdl4r5j7pr" path="res://source/block_scenes/spike/spike.png" id="2_j8vat"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8mn77"]
+size = Vector2(5, 8.5)
+
+[node name="spike" type="StaticBody2D"]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("1_m82bq")
+
+[node name="texture" type="Sprite2D" parent="."]
+texture = ExtResource("2_j8vat")
+
+[node name="detector" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="detector"]
+position = Vector2(0, 3.25)
+shape = SubResource("RectangleShape2D_8mn77")
+
+[connection signal="body_entered" from="detector" to="." method="_on_detector_body_entered"]

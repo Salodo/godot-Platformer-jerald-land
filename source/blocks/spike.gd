@@ -1,7 +1,7 @@
 extends "block.gd"
 
 func _init():
-	block_id = "1"
+	block_id = 1
 	block_dat["d"] = 10
 
 func _on_detector_body_entered(body):

@@ -5,10 +5,11 @@ var spawn_pos:Vector2 = Vector2(0,0)
 #t = title
 #d = description
 #m = map
-
+#s = spawnpoint
 var map_data:Dictionary = {
 		"t":"COOL MAP",
 		"d":"MADE BY SALPO",
+		"s":[0,0],
 		"m":
 		[{"p":[0,5],"i":"0"},#BLOCKS
 		{"p":[1,5],"i":"0"},
@@ -23,6 +24,8 @@ var map_data:Dictionary = {
 		]
 		}
 
+var editor_load_map:bool = false
+
 var block_id_to_scene:Dictionary = {
 	"0":"res://source/block_scenes/default_block/block.tscn",
 	"1":"res://source/block_scenes/spike/block.tscn",
@@ -31,15 +34,17 @@ var block_id_to_scene:Dictionary = {
 
 var map_change = false
 
-func grab_map(folder):
+func grab_map(folder, spawn=Vector2(0,0)):
 	var map_dict:Dictionary = {}
 	
 	#t = title
 	#d = description
 	#m = map
+	#s = spawn_pos
 	
 	map_dict["t"] = "demo"
 	map_dict["d"] = ""
+	map_dict["s"] = [spawn.x,spawn.y]
 	map_dict["m"] = []
 	
 	for child in folder.get_children():
@@ -63,13 +68,14 @@ func grab_map(folder):
 
 func load_map(map_code:Array,folder:Node2D):
 	for block_dat in map_code:
-		var new_block = load(block_id_to_scene[block_dat["i"]]).instantiate()
+		var new_block = load(block_id_to_scene[str(block_dat["i"])]).instantiate()
 		new_block.set_dat(block_dat)
 		
 		folder.add_child(new_block)
 
 func change_map(data:Dictionary):
 	map_data = data
+	spawn_pos = Vector2(data["s"][0],data["s"][1])*16
 	map_change = true
 
 func has_map_changed():

@@ -1,7 +1,7 @@
 extends "block.gd"
 
 func _init():
-	block_id = "2"
+	block_id = 2
 
 @onready var texture = $texture
 

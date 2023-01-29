@@ -11,9 +11,10 @@ var was_on_ground_last_frame = true
 
 @onready var after_timer = $jump_timer
 @onready var import = $CanvasLayer/Control/import
+@onready var edit = $CanvasLayer/Control/edit
 
 func _ready():
-	position = Bigscripts.spawn_pos
+	global_position = Bigscripts.spawn_pos
 
 func jump():
 	velocity.y = JUMP_VELOCITY
@@ -54,15 +55,25 @@ func _physics_process(delta):
 func _on_jump_timer_timeout():
 	after_jump = false
 
+func kill():
+	if Bigscripts.has_map_changed():
+		get_tree().reload_current_scene()
+	else:
+		global_position = Bigscripts.spawn_pos
+		velocity = Vector2(0,0)
+		print("AA")
+
 func damage(amount):
 	if amount > 0:
-		if Bigscripts.has_map_changed():
-			get_tree().reload_current_scene()
-		else:
-			global_position = Bigscripts.spawn_pos
+		kill()
 
 
 func _on_button_pressed():
 	import.release_focus()
 	Bigscripts.change_map((JSON.parse_string(DisplayServer.clipboard_get())))
 
+func _on_edit_pressed():
+	edit.release_focus()
+	Bigscripts.editor_load_map = true
+	Bigscripts.spawn_pos = Vector2(0,0)
+	get_tree().change_scene_to_file("res://level_builder/level_builder.tscn")

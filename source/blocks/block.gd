@@ -1,7 +1,7 @@
 extends StaticBody2D
 
 var block_dat = {}
-var block_id = "0"
+var block_id = 0
 
 const CELL_SIZE = 16
 

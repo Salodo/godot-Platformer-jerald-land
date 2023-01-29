@@ -8,8 +8,12 @@ const death_layer = 1000
 
 var after_jump = false
 var was_on_ground_last_frame = true
-@onready var after_timer = $jump_timer
 
+@onready var after_timer = $jump_timer
+@onready var import = $CanvasLayer/Control/import
+
+func _ready():
+	position = Bigscripts.spawn_pos
 
 func jump():
 	velocity.y = JUMP_VELOCITY
@@ -52,9 +56,13 @@ func _on_jump_timer_timeout():
 
 func damage(amount):
 	if amount > 0:
-		get_tree().reload_current_scene()
+		if Bigscripts.has_map_changed():
+			get_tree().reload_current_scene()
+		else:
+			global_position = Bigscripts.spawn_pos
 
 
 func _on_button_pressed():
-	Bigscripts.map_data = JSON.parse_string(DisplayServer.clipboard_get())
+	import.release_focus()
+	Bigscripts.change_map((JSON.parse_string(DisplayServer.clipboard_get())))
 

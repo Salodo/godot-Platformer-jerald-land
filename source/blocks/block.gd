@@ -19,7 +19,7 @@ func get_dat():
 	if block_dat!={}:
 		return {"p":[grid_pos.x,grid_pos.y],"i":block_id,"d":block_dat}
 	else:
-		return {"p":[grid_pos.x,grid_pos.y],"i":"0"}
+		return {"p":[grid_pos.x,grid_pos.y],"i":block_id}
 
 func set_dat(dat:Dictionary):
 	if dat.has("p"):

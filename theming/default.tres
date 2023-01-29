@@ -1,0 +1,41 @@
+[gd_resource type="Theme" load_steps=6 format=3 uid="uid://duscod7gw58fs"]
+
+[ext_resource type="FontFile" uid="uid://bwfrsquh0ifih" path="res://theming/DotGothic16/DotGothic16-Regular.ttf" id="2_uj7fs"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vfng8"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tf0su"]
+bg_color = Color(0.172549, 0.172549, 0.172549, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yksml"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(1, 1, 1, 1)
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_w8ee3"]
+bg_color = Color(0.290196, 0.290196, 0.290196, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(1, 1, 1, 1)
+
+[resource]
+default_font = ExtResource("2_uj7fs")
+Button/styles/focus = SubResource("StyleBoxEmpty_vfng8")
+Button/styles/hover = SubResource("StyleBoxFlat_tf0su")
+Button/styles/normal = SubResource("StyleBoxFlat_yksml")
+Button/styles/pressed = SubResource("StyleBoxFlat_w8ee3")

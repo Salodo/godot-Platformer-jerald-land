@@ -23,6 +23,14 @@ var map_data:Dictionary = {
 		]
 		}
 
+var block_id_to_scene:Dictionary = {
+	"0":"res://source/block_scenes/default_block/block.tscn",
+	"1":"res://source/block_scenes/spike/block.tscn",
+	"2":"res://source/block_scenes/checkpoint/block.tscn",
+}
+
+var map_change = false
+
 func grab_map(folder):
 	var map_dict:Dictionary = {}
 	
@@ -52,3 +60,20 @@ func grab_map(folder):
 		compressed_map += i
 	
 	return compressed_map
+
+func load_map(map_code:Array,folder:Node2D):
+	for block_dat in map_code:
+		var new_block = load(block_id_to_scene[block_dat["i"]]).instantiate()
+		new_block.set_dat(block_dat)
+		
+		folder.add_child(new_block)
+
+func change_map(data:Dictionary):
+	map_data = data
+	map_change = true
+
+func has_map_changed():
+	if map_change:
+		map_change = false
+		return true
+	return false

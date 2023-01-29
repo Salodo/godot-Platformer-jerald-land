@@ -4,10 +4,14 @@
 size = Vector2(16, 16)
 
 [node name="block" type="StaticBody2D"]
-collision_layer = 2
-collision_mask = 2
+collision_layer = 18
+collision_mask = 18
 
 [node name="texture" type="Sprite2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+light_mask = 16
+visibility_layer = 16
 shape = SubResource("RectangleShape2D_8mn77")
+
+[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]

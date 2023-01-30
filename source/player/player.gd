@@ -12,6 +12,7 @@ var was_on_ground_last_frame = true
 @onready var after_timer = $jump_timer
 @onready var import = $CanvasLayer/Control/import
 @onready var edit = $CanvasLayer/Control/edit
+@onready var texture = $Jerald
 
 func _ready():
 	global_position = Bigscripts.spawn_pos
@@ -41,13 +42,20 @@ func _physics_process(delta):
 			after_jump = false
 			
 		
-
 	#MOVE
 	var direction = Input.get_axis("left", "right")
 	if direction:
 		velocity.x = direction * SPEED
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
+	
+	if direction==1:texture.scale.x = abs(texture.scale.x)
+	else:texture.scale.x = -abs(texture.scale.x)
+	
+	if (direction*direction):
+		texture.play("walk")
+	else:
+		texture.play("idle")
 
 	move_and_slide()
 
@@ -61,7 +69,6 @@ func kill():
 	else:
 		global_position = Bigscripts.spawn_pos
 		velocity = Vector2(0,0)
-		print("AA")
 
 func damage(amount):
 	if amount > 0:

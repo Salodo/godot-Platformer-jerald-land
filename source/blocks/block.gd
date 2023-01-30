@@ -1,9 +1,13 @@
 extends StaticBody2D
 
 var block_dat = {}
+var default_block_dat = {}
 var block_id = 0
 
 const CELL_SIZE = 16
+
+func _init():
+	block_dat = default_block_dat
 
 func position_to_grid(pos:Vector2):
 	return (pos / CELL_SIZE).floor()
@@ -16,10 +20,10 @@ func get_dat():
 	#p = position
 	#i = block_id
 	#b = block_data
-	if block_dat!={}:
-		return {"p":[grid_pos.x,grid_pos.y],"i":block_id,"d":block_dat}
-	else:
+	if block_dat==default_block_dat:
 		return {"p":[grid_pos.x,grid_pos.y],"i":block_id}
+	else:
+		return {"p":[grid_pos.x,grid_pos.y],"i":block_id,"d":block_dat}
 
 func set_dat(dat:Dictionary):
 	if dat.has("p"):

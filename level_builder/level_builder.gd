@@ -4,11 +4,12 @@ extends Node2D
 @onready var cursor = $Cursor
 @onready var block_container = $block_folder
 @onready var jerald = $jerald
+@onready var properties_menu = $CanvasLayer/Control/properties/ScrollContainer/MarginContainer/VBoxContainer
 
 var block_icons = [
-{"id":"0","name":"cube","icon":"res://source/block_scenes/default_block/default_block.png"},
-{"id":"1","name":"spike","icon":"res://source/block_scenes/spike/spike.png"},
-{"id":"2","name":"checkpoint","icon":"res://source/block_scenes/checkpoint/icon.png"},
+{"name":"cube","icon":"res://source/block_scenes/default_block/default_block.png"},
+{"name":"spike","icon":"res://source/block_scenes/spike/spike.png"},
+{"name":"checkpoint","icon":"res://source/block_scenes/checkpoint/icon.png"},
 ]
 
 const CELL_SIZE:int = 16
@@ -18,6 +19,7 @@ var on_ui_element:bool = false
 var current_cursor_state:int = 0
 var previous_mouse_snapped_pos:Vector2
 var selected_block:int = 0
+var selected_block_dat = null
 
 var currently_hovering_block:Node2D = null
 var hovering_on_jerald:bool = false
@@ -52,10 +54,12 @@ func place_grid(pos:Vector2):
 	if on_ui_element:return
 	if currently_hovering_block!=null:return
 	
-	var current_block_id = block_icons[selected_block]["id"]
-	var new_block = load(Bigscripts.block_id_to_scene[current_block_id]).instantiate()
+	var current_block_id = selected_block
+	var new_block = load(Bigscripts.block_id_to_scene[str(current_block_id)]).instantiate()
 	
 	new_block.global_position = pos
+	if selected_block_dat:
+		new_block.block_dat = selected_block_dat
 	
 	block_container.call_deferred("add_child",new_block)
 
@@ -67,17 +71,24 @@ func _process(delta):
 	camera.position += dir*speed*delta
 	
 	var current_mouse_snapped_pos = position_to_grid(get_global_mouse_position())
-	#DID HANDLE PLACING AND BREAKING
-	#if previous_mouse_snapped_pos != current_mouse_snapped_pos:
-	#	if current_cursor_state == 1:
-	#		place_grid(current_mouse_snapped_pos) 
-		
-	#previous_mouse_snapped_pos = position_to_grid(get_global_mouse_position())
 	
-	#HANDLES CURSOR
+	for i in ["place", "delete", "pick_block"]:
+		if Input.is_action_just_pressed(i):
+			if not on_ui_element:
+				properties_menu.close()
+				break
+	
 	if Input.is_action_just_pressed("place") and can_place:
 		cursor_state(1)
-		place_grid(current_mouse_snapped_pos) 
+		
+		if currently_hovering_block:
+			
+			var block_dat = currently_hovering_block.block_dat
+			var block_name = block_icons[currently_hovering_block.block_id]["name"]
+			
+			properties_menu.register_menu(block_dat, block_name, currently_hovering_block)
+		else:
+			place_grid(current_mouse_snapped_pos)
 	elif Input.is_action_just_pressed("delete"):
 		cursor_state(2)
 		if currently_hovering_block != null:
@@ -87,7 +98,14 @@ func _process(delta):
 	elif Input.is_action_just_pressed("place") and hovering_on_jerald:
 		moving_jerald = true
 		cursor_state(3)
-	
+	elif Input.is_action_just_pressed("pick_block_dat"):
+		if currently_hovering_block:
+			select_block(currently_hovering_block.block_id)
+			selected_block_dat = currently_hovering_block.block_dat
+	elif Input.is_action_just_pressed("pick_block"):
+		if currently_hovering_block:
+			select_block(currently_hovering_block.block_id)
+			
 	if Input.is_action_just_released("place") and hovering_on_jerald:
 		moving_jerald = false
 		can_place = true
@@ -120,7 +138,6 @@ func _on_area_2d_body_entered(body):
 		currently_hovering_block.queue_free()
 		currently_hovering_block = null
 	currently_hovering_block = body
-	
 func _on_area_2d_body_exited(body):
 	if body.is_in_group("player_dummy"):
 		hovering_on_jerald = false
@@ -132,6 +149,8 @@ func _on_area_2d_body_exited(body):
 	if current_cursor_state == 1 and blocks_on_cursor==0 and can_place:
 		place_grid(position_to_grid(get_global_mouse_position()))
 
+
+
 #HANDLES EXPORT AND IMPORT
 @onready var export = $CanvasLayer/Control/export
 @onready var import = $CanvasLayer/Control/import
@@ -141,7 +160,7 @@ func clear_map():
 		i.queue_free()
 func _on_button_pressed():
 	export.release_focus()
-	var s = position_to_grid(jerald.global_position)
+	var s = position_to_grid(jerald.global_position)/16
 	DisplayServer.clipboard_set(Bigscripts.grab_map(block_container,s))
 func _on_import_pressed():
 	import.release_focus()
@@ -154,17 +173,18 @@ func _on_import_pressed():
 @onready var up_button = $CanvasLayer/Control/up
 @onready var down_button = $CanvasLayer/Control/down
 
+func select_block(id):
+	selected_block_texture.texture = load(block_icons[id]["icon"])
+	selected_block = id
+	selected_block_dat = null
 func _on_down_pressed():
 	down_button.release_focus()
 	if selected_block > 0:
-		selected_block-=1
-		selected_block_texture.texture = load(block_icons[selected_block]["icon"])
-		
+		select_block(selected_block-1)
 func _on_up_pressed():
 	up_button.release_focus()
 	if selected_block < block_icons.size()-1:
-		selected_block+=1
-		selected_block_texture.texture = load(block_icons[selected_block]["icon"])
+		select_block(selected_block+1)
 
 #HANDLES PLAYTESTING and camera reset
 @onready var playtes_button = $CanvasLayer/Control/playtest

@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://dukji1wxyhptc"]
+
+[ext_resource type="Theme" uid="uid://duscod7gw58fs" path="res://theming/default.tres" id="1_my5s2"]
+[ext_resource type="Script" path="res://level_builder/properties_menu/string/string.gd" id="2_ir3re"]
+
+[node name="LineEdit" type="LineEdit"]
+theme = ExtResource("1_my5s2")
+placeholder_text = "STRING"
+alignment = 1
+script = ExtResource("2_ir3re")

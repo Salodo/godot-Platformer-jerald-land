@@ -5,7 +5,7 @@ Small platformer with a level editor
 Developemt on godot 4.0-beta10
 - DOLOAD LINK https://downloads.tuxfamily.org/godotengine/4.0/beta10/
 
-~Features~
+_Features_
 
 blocks
   -default block

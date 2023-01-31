@@ -3,17 +3,17 @@
 Small platformer with a level editor
 
 Developemt on godot 4.0-beta10
-- DOLOAD LINK https://downloads.tuxfamily.org/godotengine/4.0/beta10/
+- DOWNLOAD LINK https://downloads.tuxfamily.org/godotengine/4.0/beta10/
 
 _Features_
 
-blocks
+- blocks
   -default block
   -spikes
   -checkpoints
   -jump pads
 
-level editor
+- level editor
   -place tiles
   -destroy tiles
   -move player

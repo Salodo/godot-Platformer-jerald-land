@@ -13,6 +13,9 @@ func clear():
 		i.queue_free()
 
 func make_property(value, _name:String):
+	if typeof(value) == 3:
+		value = int(value)
+	
 	match typeof(value):
 		2:
 			var new_int_node = load("res://level_builder/properties_menu/int/int.tscn").instantiate()
@@ -34,13 +37,12 @@ func get_properties():
 		block_dat[setting[1]] = setting[0]
 	return block_dat
 
-func register_menu(dat:Dictionary, name:String, _selected_node):
+func register_menu(dat:Dictionary, _name:String, _selected_node):
 	open()
 	selected_node = _selected_node
-	title.register_text(name)
+	title.register_text(_name)
 	clear()
 	for i in dat:
-		print(typeof(dat[i]))
 		make_property(dat[i], i)
 
 func _on_button_pressed():

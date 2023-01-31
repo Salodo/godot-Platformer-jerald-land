@@ -30,6 +30,7 @@ var block_id_to_scene:Dictionary = {
 	"0":"res://source/block_scenes/default_block/block.tscn",
 	"1":"res://source/block_scenes/spike/block.tscn",
 	"2":"res://source/block_scenes/checkpoint/block.tscn",
+	"3":"res://source/block_scenes/jump_pad/block.tscn",
 }
 
 var map_change = false

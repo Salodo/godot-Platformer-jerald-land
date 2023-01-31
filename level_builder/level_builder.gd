@@ -10,6 +10,7 @@ var block_icons = [
 {"name":"cube","icon":"res://source/block_scenes/default_block/default_block.png"},
 {"name":"spike","icon":"res://source/block_scenes/spike/spike.png"},
 {"name":"checkpoint","icon":"res://source/block_scenes/checkpoint/icon.png"},
+{"name":"jump_pad","icon":"res://source/block_scenes/jump_pad/jump_pad.png"},
 ]
 
 const CELL_SIZE:int = 16
@@ -78,7 +79,7 @@ func _process(delta):
 				properties_menu.close()
 				break
 	
-	if Input.is_action_just_pressed("place") and can_place:
+	if Input.is_action_just_pressed("place") and can_place and not on_ui_element:
 		cursor_state(1)
 		
 		if currently_hovering_block:
@@ -172,6 +173,12 @@ func _on_import_pressed():
 @onready var selected_block_texture = $CanvasLayer/Control/selected_block
 @onready var up_button = $CanvasLayer/Control/up
 @onready var down_button = $CanvasLayer/Control/down
+
+func _input(event):
+	if Input.is_action_just_pressed("block_up"):
+		_on_down_pressed()
+	elif Input.is_action_just_pressed("block_down"):
+		_on_up_pressed()
 
 func select_block(id):
 	selected_block_texture.texture = load(block_icons[id]["icon"])

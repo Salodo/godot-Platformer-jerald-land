@@ -59,6 +59,9 @@ func _physics_process(delta):
 
 	move_and_slide()
 
+func _input(event):
+	if Input.is_action_just_pressed("reset"):
+		kill()
 
 func _on_jump_timer_timeout():
 	after_jump = false

@@ -70,6 +70,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="import" type="Button" parent="CanvasLayer/Control"]
+layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
@@ -80,6 +81,7 @@ theme = ExtResource("3_1btrs")
 text = "import"
 
 [node name="edit" type="Button" parent="CanvasLayer/Control"]
+layout_mode = 0
 offset_right = 102.0
 offset_bottom = 51.0
 theme = ExtResource("3_1btrs")

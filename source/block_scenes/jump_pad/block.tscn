@@ -1,7 +1,40 @@
-[gd_scene load_steps=5 format=3 uid="uid://no5g5gpo53j8"]
+[gd_scene load_steps=11 format=3 uid="uid://no5g5gpo53j8"]
 
 [ext_resource type="Script" path="res://source/blocks/jump_pad.gd" id="1_nwxug"]
-[ext_resource type="Texture2D" uid="uid://ctx71rk0d0j8i" path="res://source/block_scenes/jump_pad/jump_pad.png" id="2_frlb8"]
+[ext_resource type="Texture2D" uid="uid://bol6cuk5iy0mi" path="res://source/block_scenes/jump_pad/bonce_slime.png" id="2_fwg0g"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5ou8c"]
+atlas = ExtResource("2_fwg0g")
+region = Rect2(16, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2t6gc"]
+atlas = ExtResource("2_fwg0g")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4kl0y"]
+atlas = ExtResource("2_fwg0g")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_if52f"]
+atlas = ExtResource("2_fwg0g")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ratj3"]
+atlas = ExtResource("2_fwg0g")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_e3ojm"]
+animations = [{
+"frames": [SubResource("AtlasTexture_5ou8c"), SubResource("AtlasTexture_2t6gc"), SubResource("AtlasTexture_4kl0y"), SubResource("AtlasTexture_if52f")],
+"loop": true,
+"name": &"activated",
+"speed": 5.0
+}, {
+"frames": [SubResource("AtlasTexture_ratj3")],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8mn77"]
 size = Vector2(4, 2)
@@ -14,8 +47,10 @@ collision_layer = 16
 collision_mask = 16
 script = ExtResource("1_nwxug")
 
-[node name="texture" type="Sprite2D" parent="."]
-texture = ExtResource("2_frlb8")
+[node name="texture" type="AnimatedSprite2D" parent="."]
+frames = SubResource("SpriteFrames_e3ojm")
+animation = &"activated"
+playing = true
 
 [node name="detector" type="Area2D" parent="."]
 collision_layer = 0
@@ -33,4 +68,5 @@ debug_color = Color(0, 0.6, 0.701961, 0)
 
 [node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
 
+[connection signal="animation_finished" from="texture" to="." method="_on_texture_animation_finished"]
 [connection signal="body_entered" from="detector" to="." method="_on_detector_body_entered"]

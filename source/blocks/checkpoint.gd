@@ -8,9 +8,9 @@ func _init():
 func set_texture_state(state:int):
 	match state:
 		0:
-			texture.region_rect = Rect2(0,0,16,16)
+			texture.play("blank")
 		1:
-			texture.region_rect = Rect2(0,16,16,16)
+			texture.play("activated")
 		
 func _on_area_2d_body_entered(body):
 	if body.is_in_group("player"):

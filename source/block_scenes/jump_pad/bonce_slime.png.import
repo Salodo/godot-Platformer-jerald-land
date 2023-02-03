@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://beoc6ung41i57"
-path="res://.godot/imported/icon.png-05878560d6a319a6c897c33527098d38.ctex"
+uid="uid://bol6cuk5iy0mi"
+path="res://.godot/imported/bonce_slime.png-806d63edabb43ea7481653603d09d744.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://source/block_scenes/checkpoint/icon.png"
-dest_files=["res://.godot/imported/icon.png-05878560d6a319a6c897c33527098d38.ctex"]
+source_file="res://source/block_scenes/jump_pad/bonce_slime.png"
+dest_files=["res://.godot/imported/bonce_slime.png-806d63edabb43ea7481653603d09d744.ctex"]
 
 [params]
 

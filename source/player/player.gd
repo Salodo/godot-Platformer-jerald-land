@@ -16,6 +16,7 @@ var was_on_ground_last_frame = true
 
 func _ready():
 	global_position = Bigscripts.spawn_pos
+	$CanvasLayer.show()
 
 func jump():
 	velocity.y = JUMP_VELOCITY
@@ -76,7 +77,6 @@ func kill():
 func damage(amount):
 	if amount > 0:
 		kill()
-
 
 func _on_button_pressed():
 	import.release_focus()

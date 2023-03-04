@@ -1,9 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://beyb7myg0ha0t"]
+[gd_scene load_steps=12 format=3 uid="uid://beyb7myg0ha0t"]
 
 [ext_resource type="Script" path="res://source/player/player.gd" id="1_y6p4g"]
 [ext_resource type="Theme" uid="uid://duscod7gw58fs" path="res://theming/default.tres" id="3_1btrs"]
 [ext_resource type="Texture2D" uid="uid://cnwmn4br0cfpk" path="res://source/player/Jerald.png" id="4_h4ya0"]
 [ext_resource type="Texture2D" uid="uid://da81jdc8nqlnk" path="res://source/player/Jerald_funny_walk.png" id="4_ubwep"]
+[ext_resource type="FontFile" uid="uid://bwfrsquh0ifih" path="res://theming/DotGothic16/DotGothic16-Regular.ttf" id="5_irwgm"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rprth"]
 atlas = ExtResource("4_ubwep")
@@ -60,9 +61,8 @@ zoom = Vector2(3, 3)
 wait_time = 0.1
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
-visible = false
 
-[node name="Control" type="Control" parent="CanvasLayer"]
+[node name="ui" type="Control" parent="CanvasLayer"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -70,7 +70,8 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="import" type="Button" parent="CanvasLayer/Control"]
+[node name="import" type="Button" parent="CanvasLayer/ui"]
+layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
@@ -80,12 +81,96 @@ grow_horizontal = 0
 theme = ExtResource("3_1btrs")
 text = "import"
 
-[node name="edit" type="Button" parent="CanvasLayer/Control"]
+[node name="edit" type="Button" parent="CanvasLayer/ui"]
+layout_mode = 0
 offset_right = 102.0
 offset_bottom = 51.0
 theme = ExtResource("3_1btrs")
 text = "edit"
 
+[node name="wim_ui" type="Control" parent="CanvasLayer"]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="outer" type="ColorRect" parent="CanvasLayer/wim_ui"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -250.0
+offset_right = 200.0
+offset_bottom = 250.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="inner" type="ColorRect" parent="CanvasLayer/wim_ui/outer"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = -10.0
+offset_bottom = -10.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="win_label" type="Label" parent="CanvasLayer/wim_ui/outer"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = -20.0
+grow_horizontal = 2
+theme = ExtResource("3_1btrs")
+theme_override_fonts/font = ExtResource("5_irwgm")
+theme_override_font_sizes/font_size = 50
+text = "YOU WIN"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="restart" type="Button" parent="CanvasLayer/wim_ui/outer"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 50.0
+offset_top = -19.0
+offset_right = -50.0
+offset_bottom = 29.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("3_1btrs")
+text = "Restart"
+
+[node name="main_menu" type="Button" parent="CanvasLayer/wim_ui/outer"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 50.0
+offset_top = 50.0
+offset_right = -50.0
+offset_bottom = 98.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("3_1btrs")
+text = "Main menu"
+
 [connection signal="timeout" from="jump_timer" to="." method="_on_jump_timer_timeout"]
-[connection signal="pressed" from="CanvasLayer/Control/import" to="." method="_on_button_pressed"]
-[connection signal="pressed" from="CanvasLayer/Control/edit" to="." method="_on_edit_pressed"]
+[connection signal="pressed" from="CanvasLayer/ui/import" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/ui/edit" to="." method="_on_edit_pressed"]
+[connection signal="pressed" from="CanvasLayer/wim_ui/outer/restart" to="." method="_on_restart_pressed"]
+[connection signal="pressed" from="CanvasLayer/wim_ui/outer/main_menu" to="." method="_on_main_menu_pressed"]

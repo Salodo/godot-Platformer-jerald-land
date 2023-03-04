@@ -39,12 +39,10 @@ func grab_map(folder, spawn=Vector2(0,0)):
 	var map_dict:Dictionary = {}
 	
 	#t = title
-	#d = description
 	#m = map
 	#s = spawn_pos
 	
 	map_dict["t"] = "demo"
-	map_dict["d"] = ""
 	map_dict["s"] = [spawn.x,spawn.y]
 	map_dict["m"] = []
 	

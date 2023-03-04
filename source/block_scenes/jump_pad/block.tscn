@@ -37,7 +37,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8mn77"]
-size = Vector2(4, 2)
+size = Vector2(10, 21)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5xcn7"]
 size = Vector2(5, 5)
@@ -56,7 +56,7 @@ playing = true
 collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="detector"]
-position = Vector2(0, 7)
+position = Vector2(0, -2.5)
 shape = SubResource("RectangleShape2D_8mn77")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -70,3 +70,4 @@ debug_color = Color(0, 0.6, 0.701961, 0)
 
 [connection signal="animation_finished" from="texture" to="." method="_on_texture_animation_finished"]
 [connection signal="body_entered" from="detector" to="." method="_on_detector_body_entered"]
+[connection signal="body_exited" from="detector" to="." method="_on_detector_body_exited"]

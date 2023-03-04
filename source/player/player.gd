@@ -1,35 +1,55 @@
 extends CharacterBody2D
 
 
-const SPEED = 100.0
-const JUMP_VELOCITY = -200.0
-const gravity = 900
-const death_layer = 1000
+const SPEED:int = 100
+const JUMP_VELOCITY:int = -200
+const gravity:int = 900
+const death_layer:int = 1000
 
-var after_jump = false
-var was_on_ground_last_frame = true
+var after_jump:bool = false
+var was_on_ground_last_frame:bool = true
+var in_ui:bool = false
+
+var bounce_factor:float = 90
+var jump_on_ground:int = 0
+
+var on_air_velocity:Vector2 = Vector2(0,0);
+
+@onready var default_ui = $CanvasLayer/ui
+@onready var win_ui = $CanvasLayer/wim_ui
 
 @onready var after_timer = $jump_timer
-@onready var import = $CanvasLayer/Control/import
-@onready var edit = $CanvasLayer/Control/edit
+@onready var import = $CanvasLayer/ui/import
+@onready var edit = $CanvasLayer/ui/edit
 @onready var texture = $Jerald
 
 func _ready():
 	global_position = Bigscripts.spawn_pos
-	$CanvasLayer.show()
+	default_ui.show()
 
 func jump():
 	velocity.y = JUMP_VELOCITY
 
 func _physics_process(delta):
+	if in_ui:return
 	#GRAFITY
 	if not is_on_floor():
+		on_air_velocity = velocity
 		velocity.y += gravity * delta
 		if global_position.y > death_layer:
 			damage(999)
 	
 	#JUMP FRAMES
 	if is_on_floor():
+		if jump_on_ground >= 1:
+			print(bounce_factor/100)
+			velocity.y = -on_air_velocity.y*(bounce_factor/100)
+			if velocity.y <= 1 or velocity.y >= -1:
+				velocity.x = 0
+			on_air_velocity = Vector2(0,0);
+		else:
+			on_air_velocity = Vector2(0,0)
+			
 		was_on_ground_last_frame = true
 	elif was_on_ground_last_frame:
 		was_on_ground_last_frame = false
@@ -57,7 +77,8 @@ func _physics_process(delta):
 		texture.play("walk")
 	else:
 		texture.play("idle")
-
+	
+	
 	move_and_slide()
 
 func _input(event):
@@ -67,8 +88,8 @@ func _input(event):
 func _on_jump_timer_timeout():
 	after_jump = false
 
-func kill():
-	if Bigscripts.has_map_changed():
+func kill(force_restart:bool = false):
+	if Bigscripts.has_map_changed() or force_restart:
 		get_tree().reload_current_scene()
 	else:
 		global_position = Bigscripts.spawn_pos
@@ -77,6 +98,10 @@ func kill():
 func damage(amount):
 	if amount > 0:
 		kill()
+
+func win():
+	win_ui.show()
+	in_ui = true
 
 func _on_button_pressed():
 	import.release_focus()
@@ -87,3 +112,10 @@ func _on_edit_pressed():
 	Bigscripts.editor_load_map = true
 	Bigscripts.spawn_pos = Vector2(0,0)
 	get_tree().change_scene_to_file("res://level_builder/level_builder.tscn")
+
+#WIN UI
+func _on_restart_pressed():
+	kill(true)
+
+func _on_main_menu_pressed():
+	get_tree().change_scene_to_file("res://main_menu/main_menu.tscn")

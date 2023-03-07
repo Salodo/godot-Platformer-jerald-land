@@ -1,5 +1,6 @@
 extends Node
 
+var default_spawn_pos:Vector2 = Vector2(0,0)
 var spawn_pos:Vector2 = Vector2(0,0)
 
 #t = title
@@ -7,8 +8,7 @@ var spawn_pos:Vector2 = Vector2(0,0)
 #m = map
 #s = spawnpoint
 var map_data:Dictionary = {
-		"t":"COOL MAP",
-		"d":"MADE BY SALPO",
+		"t":"Default Map",
 		"s":[0,0],
 		"m":
 		[{"p":[0,5],"i":"0"},#BLOCKS
@@ -75,6 +75,7 @@ func load_map(map_code:Array,folder:Node2D):
 func change_map(data:Dictionary):
 	map_data = data
 	spawn_pos = Vector2(data["s"][0],data["s"][1])*16
+	default_spawn_pos = spawn_pos
 	map_change = true
 
 func has_map_changed():

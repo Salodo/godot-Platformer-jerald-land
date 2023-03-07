@@ -90,6 +90,8 @@ func _on_jump_timer_timeout():
 
 func kill(force_restart:bool = false):
 	if Bigscripts.has_map_changed() or force_restart:
+		if force_restart:
+			Bigscripts.spawn_pos = Bigscripts.default_spawn_pos
 		get_tree().reload_current_scene()
 	else:
 		global_position = Bigscripts.spawn_pos

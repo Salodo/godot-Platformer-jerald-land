@@ -1,0 +1,220 @@
+[gd_scene load_steps=13 format=3 uid="uid://c5ly2a3bwne5u"]
+
+[ext_resource type="Script" path="res://level_builder/level_builder.gd" id="1_dhbf8"]
+[ext_resource type="Texture2D" uid="uid://dyjxemk2c3o6k" path="res://level_builder/cursor/cursor.png" id="2_whj7w"]
+[ext_resource type="Texture2D" uid="uid://d3ercud310vh8" path="res://level_builder/cursor/arrow.png" id="4_27pbq"]
+[ext_resource type="Theme" uid="uid://duscod7gw58fs" path="res://theming/default.tres" id="4_i837x"]
+[ext_resource type="Texture2D" uid="uid://c0xsxm1gscxs7" path="res://source/block_scenes/default_block/default_block.png" id="6_7wfgo"]
+[ext_resource type="Script" path="res://level_builder/properties_menu/properties_menu.gd" id="6_poh4c"]
+[ext_resource type="Script" path="res://level_builder/properties_menu/title.gd" id="7_mq7d5"]
+[ext_resource type="Texture2D" uid="uid://bxg8rfq0f4cl4" path="res://source/player/jerald_original.png" id="8_xlexu"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_48r8n"]
+size = Vector2(12, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uwgla"]
+atlas = ExtResource("4_27pbq")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ldww8"]
+atlas = ExtResource("4_27pbq")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jddcm"]
+size = Vector2(16, 16)
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_dhbf8")
+
+[node name="block_folder" type="Node2D" parent="."]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(-57, 73)
+current = true
+zoom = Vector2(3, 3)
+
+[node name="Cursor" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(-108, 124)
+texture = ExtResource("2_whj7w")
+region_enabled = true
+region_rect = Rect2(0, 0, 16, 16)
+
+[node name="Area2D" type="Area2D" parent="Cursor"]
+collision_layer = 17
+collision_mask = 17
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Cursor/Area2D"]
+shape = SubResource("RectangleShape2D_48r8n")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="export" type="Button" parent="CanvasLayer/Control"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -126.0
+offset_bottom = 64.0
+grow_horizontal = 0
+theme = ExtResource("4_i837x")
+text = "export"
+
+[node name="import" type="Button" parent="CanvasLayer/Control"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -126.0
+offset_top = 64.0
+offset_bottom = 127.993
+grow_horizontal = 0
+theme = ExtResource("4_i837x")
+text = "import
+"
+
+[node name="reset_cam" type="Button" parent="CanvasLayer/Control"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -126.0
+offset_top = 127.0
+offset_bottom = 191.0
+grow_horizontal = 0
+theme = ExtResource("4_i837x")
+text = "reset camera"
+
+[node name="playtest" type="Button" parent="CanvasLayer/Control"]
+layout_mode = 0
+offset_right = 126.0
+offset_bottom = 63.993
+theme = ExtResource("4_i837x")
+text = "playtest
+"
+
+[node name="up" type="TextureButton" parent="CanvasLayer/Control"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -102.0
+offset_top = -59.0
+offset_right = -86.0
+offset_bottom = -43.0
+grow_horizontal = 0
+grow_vertical = 2
+scale = Vector2(5, 5)
+toggle_mode = true
+texture_normal = SubResource("AtlasTexture_uwgla")
+texture_pressed = SubResource("AtlasTexture_ldww8")
+texture_hover = SubResource("AtlasTexture_ldww8")
+
+[node name="selected_block" type="TextureRect" parent="CanvasLayer/Control"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -82.0
+offset_top = 42.0
+offset_right = -42.0
+offset_bottom = 82.0
+grow_horizontal = 0
+grow_vertical = 2
+texture = ExtResource("6_7wfgo")
+
+[node name="down" type="TextureButton" parent="CanvasLayer/Control"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -102.0
+offset_top = 176.0
+offset_right = -86.0
+offset_bottom = 192.0
+grow_horizontal = 0
+grow_vertical = 2
+scale = Vector2(5, -5)
+toggle_mode = true
+texture_normal = SubResource("AtlasTexture_uwgla")
+texture_pressed = SubResource("AtlasTexture_ldww8")
+texture_hover = SubResource("AtlasTexture_ldww8")
+
+[node name="properties" type="Control" parent="CanvasLayer/Control"]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_top = 78.0
+offset_right = 242.0
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="CanvasLayer/Control/properties"]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 247.0
+offset_bottom = -167.0
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Control/properties/ScrollContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+theme = ExtResource("4_i837x")
+theme_override_constants/margin_left = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control/properties/ScrollContainer/MarginContainer"]
+layout_mode = 2
+mouse_filter = 2
+alignment = 1
+script = ExtResource("6_poh4c")
+
+[node name="title" type="Label" parent="CanvasLayer/Control/properties/ScrollContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("4_i837x")
+text = "Properties : Spike"
+horizontal_alignment = 1
+script = ExtResource("7_mq7d5")
+
+[node name="items_container" type="VBoxContainer" parent="CanvasLayer/Control/properties/ScrollContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="CanvasLayer/Control/properties/ScrollContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Apply"
+
+[node name="jerald" type="StaticBody2D" parent="." groups=["player_dummy"]]
+
+[node name="Jerald" type="Sprite2D" parent="jerald"]
+texture = ExtResource("8_xlexu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="jerald"]
+shape = SubResource("RectangleShape2D_jddcm")
+
+[connection signal="body_entered" from="Cursor/Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Cursor/Area2D" to="." method="_on_area_2d_body_exited"]
+[connection signal="mouse_entered" from="CanvasLayer/Control" to="." method="_on_control_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/Control" to="." method="_on_control_mouse_exited"]
+[connection signal="pressed" from="CanvasLayer/Control/export" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/import" to="." method="_on_import_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/reset_cam" to="." method="_on_reset_cam_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/playtest" to="." method="_on_playtest_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/up" to="." method="_on_up_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/down" to="." method="_on_down_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/properties/ScrollContainer/MarginContainer/VBoxContainer/Button" to="CanvasLayer/Control/properties/ScrollContainer/MarginContainer/VBoxContainer" method="_on_button_pressed"]

@@ -1,0 +1,36 @@
+[gd_scene load_steps=5 format=3 uid="uid://w00dpqphpsp5"]
+
+[ext_resource type="Script" path="res://source/blocks/spike.gd" id="1_m82bq"]
+[ext_resource type="Texture2D" uid="uid://bnexdl4r5j7pr" path="res://source/block_scenes/spike/spike.png" id="2_j8vat"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8mn77"]
+size = Vector2(5, 5.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5xcn7"]
+size = Vector2(5, 5)
+
+[node name="spike" type="StaticBody2D"]
+collision_layer = 16
+collision_mask = 16
+script = ExtResource("1_m82bq")
+
+[node name="texture" type="Sprite2D" parent="."]
+texture = ExtResource("2_j8vat")
+
+[node name="detector" type="Area2D" parent="."]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="detector"]
+position = Vector2(0, 4.75)
+shape = SubResource("RectangleShape2D_8mn77")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+light_mask = 16
+visibility_layer = 16
+position = Vector2(0, 4)
+shape = SubResource("RectangleShape2D_5xcn7")
+debug_color = Color(0, 0.6, 0.701961, 0)
+
+[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
+
+[connection signal="body_entered" from="detector" to="." method="_on_detector_body_entered"]

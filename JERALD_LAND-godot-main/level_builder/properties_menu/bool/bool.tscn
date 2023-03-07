@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://bpg4irdknfkys"]
+
+[ext_resource type="Theme" uid="uid://duscod7gw58fs" path="res://theming/default.tres" id="1_48dpf"]
+[ext_resource type="Script" path="res://level_builder/properties_menu/bool/bool.gd" id="2_1l0c3"]
+
+[node name="CheckBox" type="CheckBox"]
+theme = ExtResource("1_48dpf")
+text = "bool"
+alignment = 1
+script = ExtResource("2_1l0c3")

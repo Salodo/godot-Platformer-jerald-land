@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://dyvtitbiyjm31"]
+
+[ext_resource type="Theme" uid="uid://duscod7gw58fs" path="res://theming/default.tres" id="1_6hww5"]
+[ext_resource type="Script" path="res://level_builder/properties_menu/int/int.gd" id="2_id6fq"]
+
+[node name="int" type="SpinBox"]
+size_flags_vertical = 0
+theme = ExtResource("1_6hww5")
+alignment = 1
+prefix = "int"
+script = ExtResource("2_id6fq")

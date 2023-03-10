@@ -2,8 +2,8 @@
 
 Small platformer with a level editor
 
-Developemt on godot 4.0-beta10
-- DOWNLOAD LINK https://downloads.tuxfamily.org/godotengine/4.0/beta10/
+Developemt on godot 4.0-Stable
+- DOWNLOAD LINK https://godotengine.org/
 
 _Features_
 

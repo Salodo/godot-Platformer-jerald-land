@@ -43,17 +43,44 @@ region = Rect2(16, 16, 16, 16)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_yvs7d"]
 animations = [{
-"frames": [SubResource("AtlasTexture_vywgk"), SubResource("AtlasTexture_nq34v"), SubResource("AtlasTexture_5duvf"), SubResource("AtlasTexture_jilh2")],
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vywgk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nq34v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5duvf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jilh2")
+}],
 "loop": true,
 "name": &"activated",
 "speed": 5.0
 }, {
-"frames": [SubResource("AtlasTexture_ylmsv")],
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ylmsv")
+}],
 "loop": true,
 "name": &"blank",
 "speed": 5.0
 }, {
-"frames": [SubResource("AtlasTexture_uevw5"), SubResource("AtlasTexture_ji30d"), SubResource("AtlasTexture_wprkc"), SubResource("AtlasTexture_y4idr")],
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uevw5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ji30d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wprkc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y4idr")
+}],
 "loop": true,
 "name": &"end",
 "speed": 5.0
@@ -71,9 +98,8 @@ collision_mask = 16
 script = ExtResource("1_iiml0")
 
 [node name="texture" type="AnimatedSprite2D" parent="."]
-frames = SubResource("SpriteFrames_yvs7d")
+sprite_frames = SubResource("SpriteFrames_yvs7d")
 animation = &"end"
-playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_8mn77")

@@ -1,12 +1,13 @@
-[gd_scene load_steps=18 format=3 uid="uid://clkcf3a1qxv67"]
+[gd_scene load_steps=19 format=3 uid="uid://clkcf3a1qxv67"]
 
 [ext_resource type="Theme" uid="uid://duscod7gw58fs" path="res://theming/default.tres" id="1_4norm"]
 [ext_resource type="Script" path="res://main_menu/main_menu.gd" id="1_x2l4x"]
-[ext_resource type="FontFile" uid="uid://bwfrsquh0ifih" path="res://theming/DotGothic16/DotGothic16-Regular.ttf" id="2_lgnyb"]
 [ext_resource type="Texture2D" uid="uid://bv06t4pnwyoqe" path="res://main_menu/assets/buttons/play.png" id="4_nkw84"]
+[ext_resource type="Texture2D" uid="uid://dbgwtm6fl43oj" path="res://main_menu/assets/buttons/editor_normal.png" id="5_beq3v"]
 [ext_resource type="Texture2D" uid="uid://chx4217ayv2vn" path="res://main_menu/assets/buttons/play_selected.png" id="5_m2jkh"]
 [ext_resource type="Script" path="res://main_menu/campaign_ui.gd" id="6_7tc3p"]
 [ext_resource type="Texture2D" uid="uid://7c3tdmgth2he" path="res://main_menu/assets/spinning_jeralds/Jerald_spinning.png" id="6_70p0v"]
+[ext_resource type="Texture2D" uid="uid://djhs7nltixq17" path="res://main_menu/assets/buttons/editor_hover.png" id="6_my0ud"]
 [ext_resource type="Texture2D" uid="uid://djfnvcwgdn8jr" path="res://main_menu/assets/buttons/arrow_normal.png" id="6_pkw8l"]
 [ext_resource type="Texture2D" uid="uid://dmhruk2lnnt7x" path="res://main_menu/assets/buttons/arrow_hover.png" id="7_gjhv2"]
 [ext_resource type="Texture2D" uid="uid://cd4oharpsgyrw" path="res://main_menu/assets/buttons/back_normal.png" id="8_wm2k5"]
@@ -26,18 +27,6 @@ tracks/0/keys = {
 "update": 0,
 "values": [0.0]
 }
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("CanvasLayer/main_ui/title:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, 0)]
-}
 
 [sub_resource type="Animation" id="Animation_tad5r"]
 resource_name = "idle"
@@ -54,18 +43,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [-0.349066, 0.349066]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("CanvasLayer/main_ui/title:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(1.5, 4.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(0, 68), Vector2(0, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_5jhic"]
@@ -196,6 +173,8 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_top = -1.0
+offset_bottom = -1.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -211,27 +190,8 @@ text = "Jerald Land"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="edit" type="Button" parent="CanvasLayer/main_ui"]
-visible = false
-layout_mode = 1
-anchors_preset = -1
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = 200.0
-offset_top = 63.0
-offset_right = -200.0
-offset_bottom = 144.0
-grow_horizontal = 2
-grow_vertical = 2
-theme = ExtResource("1_4norm")
-theme_override_fonts/font = ExtResource("2_lgnyb")
-theme_override_font_sizes/font_size = 50
-text = "Editor"
-
 [node name="play" type="TextureButton" parent="CanvasLayer/main_ui"]
-layout_mode = 1
-anchors_preset = 8
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -246,6 +206,23 @@ scale = Vector2(5, 5)
 pivot_offset = Vector2(16, 16)
 texture_normal = ExtResource("4_nkw84")
 texture_hover = ExtResource("5_m2jkh")
+
+[node name="editor" type="TextureButton" parent="CanvasLayer/main_ui"]
+layout_mode = 0
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 174.0
+offset_top = -16.0
+offset_right = 206.0
+offset_bottom = 16.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(4, 4)
+pivot_offset = Vector2(16, 16)
+texture_normal = ExtResource("5_beq3v")
+texture_hover = ExtResource("6_my0ud")
 
 [node name="animation" type="AnimationPlayer" parent="CanvasLayer/main_ui"]
 root_node = NodePath("../../..")
@@ -264,8 +241,7 @@ grow_vertical = 2
 script = ExtResource("6_7tc3p")
 
 [node name="outline" type="ColorRect" parent="CanvasLayer/campaign_ui"]
-layout_mode = 1
-anchors_preset = -1
+layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 50.0
@@ -277,8 +253,7 @@ grow_vertical = 2
 pivot_offset = Vector2(400, 300)
 
 [node name="inline" type="ColorRect" parent="CanvasLayer/campaign_ui/outline"]
-layout_mode = 1
-anchors_preset = -1
+layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 20.0
@@ -291,8 +266,7 @@ pivot_offset = Vector2(200, 300)
 color = Color(0, 0, 0, 1)
 
 [node name="title" type="Label" parent="CanvasLayer/campaign_ui/outline/inline"]
-layout_mode = 1
-anchors_preset = 10
+layout_mode = 0
 anchor_right = 1.0
 offset_bottom = 121.0
 grow_horizontal = 2
@@ -303,8 +277,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="play" type="TextureButton" parent="CanvasLayer/campaign_ui/outline/inline"]
-layout_mode = 1
-anchors_preset = 8
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -320,8 +293,7 @@ texture_normal = ExtResource("4_nkw84")
 texture_hover = ExtResource("5_m2jkh")
 
 [node name="right" type="TextureButton" parent="CanvasLayer/campaign_ui/outline/inline"]
-layout_mode = 1
-anchors_preset = 6
+layout_mode = 0
 anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
@@ -338,8 +310,7 @@ texture_normal = ExtResource("6_pkw8l")
 texture_hover = ExtResource("7_gjhv2")
 
 [node name="left" type="TextureButton" parent="CanvasLayer/campaign_ui/outline/inline"]
-layout_mode = 1
-anchors_preset = 4
+layout_mode = 0
 anchor_top = 0.5
 anchor_bottom = 0.5
 offset_left = 50.0
@@ -353,7 +324,7 @@ texture_normal = ExtResource("6_pkw8l")
 texture_hover = ExtResource("7_gjhv2")
 
 [node name="back" type="TextureButton" parent="CanvasLayer/campaign_ui/outline/inline"]
-layout_mode = 1
+layout_mode = 0
 offset_left = 62.0
 offset_top = 38.0
 offset_right = 86.0
@@ -378,8 +349,8 @@ texture = ExtResource("6_70p0v")
 wait_time = 10.0
 autostart = true
 
-[connection signal="pressed" from="CanvasLayer/main_ui/edit" to="." method="_on_edit_pressed"]
 [connection signal="pressed" from="CanvasLayer/main_ui/play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="CanvasLayer/main_ui/editor" to="." method="_on_editor_pressed"]
 [connection signal="pressed" from="CanvasLayer/campaign_ui/outline/inline/play" to="CanvasLayer/campaign_ui" method="_on_play_pressed"]
 [connection signal="pressed" from="CanvasLayer/campaign_ui/outline/inline/right" to="CanvasLayer/campaign_ui" method="_on_right_pressed"]
 [connection signal="pressed" from="CanvasLayer/campaign_ui/outline/inline/left" to="CanvasLayer/campaign_ui" method="_on_left_pressed"]

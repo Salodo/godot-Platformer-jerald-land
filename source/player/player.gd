@@ -25,7 +25,10 @@ var on_air_velocity:Vector2 = Vector2(0,0);
 
 func _ready():
 	global_position = Bigscripts.spawn_pos
-	default_ui.show()
+	if Bigscripts.editor_mode == true:
+		default_ui.show()
+	else:
+		default_ui.hide()
 
 func jump():
 	velocity.y = JUMP_VELOCITY
@@ -42,10 +45,9 @@ func _physics_process(delta):
 	#JUMP FRAMES
 	if is_on_floor():
 		if jump_on_ground >= 1:
-			print(bounce_factor/100)
 			velocity.y = -on_air_velocity.y*(bounce_factor/100)
-			if velocity.y <= 1 or velocity.y >= -1:
-				velocity.x = 0
+			if velocity.y <= 20 and velocity.y >= -20:
+				velocity.y = 0
 			on_air_velocity = Vector2(0,0);
 		else:
 			on_air_velocity = Vector2(0,0)

@@ -25,12 +25,27 @@ region = Rect2(0, 0, 16, 16)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_e3ojm"]
 animations = [{
-"frames": [SubResource("AtlasTexture_5ou8c"), SubResource("AtlasTexture_2t6gc"), SubResource("AtlasTexture_4kl0y"), SubResource("AtlasTexture_if52f")],
-"loop": true,
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5ou8c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2t6gc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4kl0y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_if52f")
+}],
+"loop": false,
 "name": &"activated",
 "speed": 5.0
 }, {
-"frames": [SubResource("AtlasTexture_ratj3")],
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ratj3")
+}],
 "loop": true,
 "name": &"default",
 "speed": 5.0
@@ -48,9 +63,8 @@ collision_mask = 16
 script = ExtResource("1_nwxug")
 
 [node name="texture" type="AnimatedSprite2D" parent="."]
-frames = SubResource("SpriteFrames_e3ojm")
+sprite_frames = SubResource("SpriteFrames_e3ojm")
 animation = &"activated"
-playing = true
 
 [node name="detector" type="Area2D" parent="."]
 collision_layer = 0

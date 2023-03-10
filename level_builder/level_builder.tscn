@@ -30,7 +30,6 @@ script = ExtResource("1_dhbf8")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(-57, 73)
-current = true
 zoom = Vector2(3, 3)
 
 [node name="Cursor" type="Sprite2D" parent="."]

@@ -42,12 +42,17 @@ func _ready():
 
 #HANDLES BUTTONS
 func _on_play_pressed():
+	Bigscripts.editor_mode = false
 	change_state(1)
 	#get_tree().change_scene_to_file("res://level_loader/main.tscn")
 
-func _on_edit_pressed():
+func _on_editor_pressed():
+	Bigscripts.editor_mode = true
 	get_tree().change_scene_to_file("res://level_builder/level_builder.tscn")
 
 func _on_back_pressed():
 	change_state(0)
+
+
+
 

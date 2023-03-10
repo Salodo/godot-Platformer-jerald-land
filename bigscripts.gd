@@ -33,6 +33,8 @@ var block_id_to_scene:Dictionary = {
 	"3":"res://source/block_scenes/jump_pad/block.tscn",
 }
 
+var editor_mode = false
+
 var map_change = false
 
 func grab_map(folder, spawn=Vector2(0,0)):
@@ -83,3 +85,7 @@ func has_map_changed():
 		map_change = false
 		return true
 	return false
+
+func _process(delta):
+	if Input.is_action_just_pressed("menu"):
+		get_tree().change_scene_to_file("res://main_menu/main_menu.tscn")

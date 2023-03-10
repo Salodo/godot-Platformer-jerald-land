@@ -21,5 +21,6 @@ func _on_detector_body_exited(body):
 		body.jump_on_ground -= 1
 
 func _on_texture_animation_finished():
-	texture.play("default")
+	pass
+	#texture.play("default")
 

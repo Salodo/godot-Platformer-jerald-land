@@ -16,9 +16,9 @@ dest_files=["res://.godot/imported/jerald_original.png-22c0cbca8275ece217fbf9004
 [params]
 
 compress/mode=0
+compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
-compress/bptc_ldr=0
 compress/normal_map=0
 compress/channel_pack=0
 mipmaps/generate=false

@@ -1,0 +1,252 @@
+[gd_scene load_steps=5 format=3 uid="uid://biao7eeq4hdvg"]
+
+[ext_resource type="Theme" uid="uid://duscod7gw58fs" path="res://theming/default.tres" id="1_ad0vq"]
+[ext_resource type="Script" path="res://source/shared_ui/settings_ui/settings_ui.gd" id="1_d77pf"]
+[ext_resource type="Texture2D" uid="uid://cd4oharpsgyrw" path="res://main_menu/assets/buttons/back_normal.png" id="2_6xext"]
+[ext_resource type="Texture2D" uid="uid://cgsnfqj18rr3q" path="res://main_menu/assets/buttons/back_selected.png" id="3_uxwt2"]
+
+[node name="settings_ui" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_d77pf")
+
+[node name="outline" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 50.0
+offset_top = 50.0
+offset_right = -50.0
+offset_bottom = -50.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(400, 300)
+
+[node name="inline" type="ColorRect" parent="outline"]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(200, 300)
+color = Color(0, 0, 0, 1)
+
+[node name="main" type="Control" parent="outline/inline"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="title" type="Label" parent="outline/inline/main"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 148.0
+grow_horizontal = 2
+theme = ExtResource("1_ad0vq")
+theme_override_font_sizes/font_size = 100
+text = "Settings"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="back" type="TextureButton" parent="outline/inline/main"]
+layout_mode = 1
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 44.0
+offset_bottom = 44.0
+scale = Vector2(5, 5)
+texture_normal = ExtResource("2_6xext")
+texture_hover = ExtResource("3_uxwt2")
+
+[node name="keybinds" type="Button" parent="outline/inline/main"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 50.0
+offset_top = -40.5
+offset_right = -50.0
+offset_bottom = 40.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_ad0vq")
+theme_override_font_sizes/font_size = 50
+text = "Keybinds"
+
+[node name="customisation" type="Button" parent="outline/inline/main"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 50.0
+offset_top = 62.5
+offset_right = -50.0
+offset_bottom = 143.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_ad0vq")
+theme_override_font_sizes/font_size = 50
+text = "customise"
+
+[node name="keybinds" type="Control" parent="outline/inline"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="title" type="Label" parent="outline/inline/keybinds"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 148.0
+grow_horizontal = 2
+theme = ExtResource("1_ad0vq")
+theme_override_font_sizes/font_size = 100
+text = "Keybinds"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="to_main" type="TextureButton" parent="outline/inline/keybinds"]
+layout_mode = 1
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 44.0
+offset_bottom = 44.0
+scale = Vector2(5, 5)
+texture_normal = ExtResource("2_6xext")
+texture_hover = ExtResource("3_uxwt2")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="outline/inline/keybinds"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = 134.0
+offset_right = -20.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Category" type="Control" parent="outline/inline/keybinds/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="label" type="Label" parent="outline/inline/keybinds/VBoxContainer/Category"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 76.0
+grow_horizontal = 2
+theme = ExtResource("1_ad0vq")
+theme_override_font_sizes/font_size = 50
+text = "Game"
+
+[node name="left" type="Control" parent="outline/inline/keybinds/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="label" type="Label" parent="outline/inline/keybinds/VBoxContainer/left"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 76.0
+grow_horizontal = 2
+theme = ExtResource("1_ad0vq")
+theme_override_font_sizes/font_size = 50
+text = "Left : A / Left Arrow"
+
+[node name="right" type="Control" parent="outline/inline/keybinds/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="label" type="Label" parent="outline/inline/keybinds/VBoxContainer/right"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 76.0
+grow_horizontal = 2
+theme = ExtResource("1_ad0vq")
+theme_override_font_sizes/font_size = 50
+text = "Right : D / Right Arrow"
+
+[node name="jump" type="Control" parent="outline/inline/keybinds/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="label" type="Label" parent="outline/inline/keybinds/VBoxContainer/jump"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 76.0
+grow_horizontal = 2
+theme = ExtResource("1_ad0vq")
+theme_override_font_sizes/font_size = 50
+text = "Jump : Space / Up arrow"
+
+[node name="keybind_popup" type="ColorRect" parent="outline/inline/keybinds"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 50.0
+offset_top = 50.0
+offset_right = -50.0
+offset_bottom = -50.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(400, 300)
+
+[node name="inline" type="ColorRect" parent="outline/inline/keybinds/keybind_popup"]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(200, 300)
+color = Color(0, 0, 0, 1)
+
+[node name="title" type="Label" parent="outline/inline/keybinds/keybind_popup/inline"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 148.0
+grow_horizontal = 2
+theme = ExtResource("1_ad0vq")
+theme_override_font_sizes/font_size = 100
+text = "Press any key
+or \"esc\" to exit"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="outline/inline/main/back" to="." method="_on_back_pressed"]
+[connection signal="pressed" from="outline/inline/main/keybinds" to="." method="_on_keybinds_pressed"]
+[connection signal="pressed" from="outline/inline/keybinds/to_main" to="." method="_on_to_main_pressed"]
+[connection signal="mouse_entered" from="outline/inline/keybinds/VBoxContainer/left" to="." method="_on_left_mouse_entered"]
+[connection signal="mouse_exited" from="outline/inline/keybinds/VBoxContainer/left" to="." method="_on_left_mouse_exited"]
+[connection signal="mouse_entered" from="outline/inline/keybinds/VBoxContainer/right" to="." method="_on_right_mouse_entered"]
+[connection signal="mouse_exited" from="outline/inline/keybinds/VBoxContainer/right" to="." method="_on_right_mouse_exited"]
+[connection signal="mouse_entered" from="outline/inline/keybinds/VBoxContainer/jump" to="." method="_on_jump_mouse_entered"]
+[connection signal="mouse_exited" from="outline/inline/keybinds/VBoxContainer/jump" to="." method="_on_jump_mouse_exited"]

@@ -10,9 +10,11 @@ var current_index = 0
 
 func open():
 	update()
+	self.show()
 
 func close():
 	current_index = 0
+	self.hide()
 
 func update():
 	title.text = CampaighnMaps.campaighn_maps[current_index]["t"]

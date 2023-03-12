@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://clkcf3a1qxv67"]
+[gd_scene load_steps=22 format=3 uid="uid://b17uy17vhnsk0"]
 
 [ext_resource type="Theme" uid="uid://duscod7gw58fs" path="res://theming/default.tres" id="1_4norm"]
 [ext_resource type="Script" path="res://main_menu/main_menu.gd" id="1_x2l4x"]
@@ -9,9 +9,12 @@
 [ext_resource type="Texture2D" uid="uid://7c3tdmgth2he" path="res://main_menu/assets/spinning_jeralds/Jerald_spinning.png" id="6_70p0v"]
 [ext_resource type="Texture2D" uid="uid://djhs7nltixq17" path="res://main_menu/assets/buttons/editor_hover.png" id="6_my0ud"]
 [ext_resource type="Texture2D" uid="uid://djfnvcwgdn8jr" path="res://main_menu/assets/buttons/arrow_normal.png" id="6_pkw8l"]
+[ext_resource type="Texture2D" uid="uid://bkgryi0eyo1bk" path="res://main_menu/assets/buttons/settings_normal.png" id="7_0nmv8"]
 [ext_resource type="Texture2D" uid="uid://dmhruk2lnnt7x" path="res://main_menu/assets/buttons/arrow_hover.png" id="7_gjhv2"]
 [ext_resource type="Texture2D" uid="uid://cd4oharpsgyrw" path="res://main_menu/assets/buttons/back_normal.png" id="8_wm2k5"]
+[ext_resource type="Texture2D" uid="uid://c7ptg1o18x78r" path="res://main_menu/assets/buttons/settings_selected.png" id="8_y5t64"]
 [ext_resource type="Texture2D" uid="uid://cgsnfqj18rr3q" path="res://main_menu/assets/buttons/back_selected.png" id="9_41l30"]
+[ext_resource type="PackedScene" uid="uid://biao7eeq4hdvg" path="res://source/shared_ui/settings_ui/settings_ui.tscn" id="14_k2au4"]
 
 [sub_resource type="Animation" id="Animation_ai4fr"]
 length = 0.001
@@ -224,6 +227,24 @@ pivot_offset = Vector2(16, 16)
 texture_normal = ExtResource("5_beq3v")
 texture_hover = ExtResource("6_my0ud")
 
+[node name="settings" type="TextureButton" parent="CanvasLayer/main_ui"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -206.0
+offset_top = -16.0
+offset_right = -174.0
+offset_bottom = 16.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(4, 4)
+pivot_offset = Vector2(16, 16)
+texture_normal = ExtResource("7_0nmv8")
+texture_hover = ExtResource("8_y5t64")
+
 [node name="animation" type="AnimationPlayer" parent="CanvasLayer/main_ui"]
 root_node = NodePath("../../..")
 libraries = {
@@ -334,6 +355,9 @@ pivot_offset = Vector2(12, 12)
 texture_normal = ExtResource("8_wm2k5")
 texture_hover = ExtResource("9_41l30")
 
+[node name="settings_ui" parent="CanvasLayer" instance=ExtResource("14_k2au4")]
+visible = false
+
 [node name="jerald_animation" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_nt2uw")
@@ -351,6 +375,7 @@ autostart = true
 
 [connection signal="pressed" from="CanvasLayer/main_ui/play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="CanvasLayer/main_ui/editor" to="." method="_on_editor_pressed"]
+[connection signal="pressed" from="CanvasLayer/main_ui/settings" to="." method="_on_settings_pressed"]
 [connection signal="pressed" from="CanvasLayer/campaign_ui/outline/inline/play" to="CanvasLayer/campaign_ui" method="_on_play_pressed"]
 [connection signal="pressed" from="CanvasLayer/campaign_ui/outline/inline/right" to="CanvasLayer/campaign_ui" method="_on_right_pressed"]
 [connection signal="pressed" from="CanvasLayer/campaign_ui/outline/inline/left" to="CanvasLayer/campaign_ui" method="_on_left_pressed"]

@@ -9,18 +9,23 @@ const campaign_levels_path = path+"campaign_levels"
 
 @onready var main_ui = $CanvasLayer/main_ui
 @onready var campaign_ui = $CanvasLayer/campaign_ui
+@onready var settings_ui = $CanvasLayer/settings_ui
 
 func change_state(state:int):
 	match state:
 		0:
 			spawn_jerald()
 			campaign_ui.close()
-			campaign_ui.hide()
+			settings_ui.close()
 			main_ui.show()
 		1:
 			campaign_ui.open()
-			campaign_ui.show()
+			settings_ui.close()
 			main_ui.hide()
+		2:
+			settings_ui.open()
+			main_ui.hide()
+			campaign_ui.close()
 
 func spawn_jerald():
 	var new_spinning_jerald = load("res://main_menu/assets/spinning_jeralds/spinning_jerald.tscn").instantiate()
@@ -36,6 +41,8 @@ func _ready():
 	animation.play("idle")
 	jerald_animation.play("jumping")
 	
+	settings_ui.connect("_on_settings_ui_close", self._on_back_pressed)
+	
 	if not DirAccess.dir_exists_absolute(levels_path):
 		DirAccess.make_dir_absolute(levels_path)
 		print("making levels path")
@@ -50,9 +57,8 @@ func _on_editor_pressed():
 	Bigscripts.editor_mode = true
 	get_tree().change_scene_to_file("res://level_builder/level_builder.tscn")
 
+func _on_settings_pressed():
+	change_state(2)
+
 func _on_back_pressed():
 	change_state(0)
-
-
-
-

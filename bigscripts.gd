@@ -37,6 +37,21 @@ var editor_mode = false
 
 var map_change = false
 
+var settings = {
+	"keybinds":{
+		"left":InputMap.action_get_events("left")[0],
+		"right":InputMap.action_get_events("right")[0],
+		"jump":InputMap.action_get_events("jump")[0],
+	}
+}
+
+func save_settings():
+	pass
+	
+
+func load_settings():
+	pass
+
 func grab_map(folder, spawn=Vector2(0,0)):
 	var map_dict:Dictionary = {}
 	

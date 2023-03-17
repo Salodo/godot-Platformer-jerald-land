@@ -2,7 +2,7 @@
 
 [ext_resource type="Theme" uid="uid://duscod7gw58fs" path="res://theming/default.tres" id="1_4norm"]
 [ext_resource type="Script" path="res://main_menu/main_menu.gd" id="1_x2l4x"]
-[ext_resource type="Texture2D" uid="uid://bv06t4pnwyoqe" path="res://main_menu/assets/buttons/play.png" id="4_nkw84"]
+[ext_resource type="Texture2D" uid="uid://bikv1jb47thdk" path="res://main_menu/assets/buttons/play_normal.png" id="3_tr1uh"]
 [ext_resource type="Texture2D" uid="uid://dbgwtm6fl43oj" path="res://main_menu/assets/buttons/editor_normal.png" id="5_beq3v"]
 [ext_resource type="Texture2D" uid="uid://chx4217ayv2vn" path="res://main_menu/assets/buttons/play_selected.png" id="5_m2jkh"]
 [ext_resource type="Script" path="res://main_menu/campaign_ui.gd" id="6_7tc3p"]
@@ -207,7 +207,7 @@ grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(5, 5)
 pivot_offset = Vector2(16, 16)
-texture_normal = ExtResource("4_nkw84")
+texture_normal = ExtResource("3_tr1uh")
 texture_hover = ExtResource("5_m2jkh")
 
 [node name="editor" type="TextureButton" parent="CanvasLayer/main_ui"]
@@ -310,7 +310,7 @@ offset_bottom = -52.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(5, 5)
-texture_normal = ExtResource("4_nkw84")
+texture_normal = ExtResource("3_tr1uh")
 texture_hover = ExtResource("5_m2jkh")
 
 [node name="right" type="TextureButton" parent="CanvasLayer/campaign_ui/outline/inline"]

@@ -133,76 +133,9 @@ scale = Vector2(5, 5)
 texture_normal = ExtResource("2_6xext")
 texture_hover = ExtResource("3_uxwt2")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="outline/inline/keybinds"]
-layout_mode = 1
-anchors_preset = -1
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 20.0
-offset_top = 134.0
-offset_right = -20.0
-offset_bottom = -20.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Category" type="Control" parent="outline/inline/keybinds/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="label" type="Label" parent="outline/inline/keybinds/VBoxContainer/Category"]
-layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-offset_bottom = 76.0
-grow_horizontal = 2
-theme = ExtResource("1_ad0vq")
-theme_override_font_sizes/font_size = 50
-text = "Game"
-
-[node name="left" type="Control" parent="outline/inline/keybinds/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="label" type="Label" parent="outline/inline/keybinds/VBoxContainer/left"]
-layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-offset_bottom = 76.0
-grow_horizontal = 2
-theme = ExtResource("1_ad0vq")
-theme_override_font_sizes/font_size = 50
-text = "Left : A / Left Arrow"
-
-[node name="right" type="Control" parent="outline/inline/keybinds/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="label" type="Label" parent="outline/inline/keybinds/VBoxContainer/right"]
-layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-offset_bottom = 76.0
-grow_horizontal = 2
-theme = ExtResource("1_ad0vq")
-theme_override_font_sizes/font_size = 50
-text = "Right : D / Right Arrow"
-
-[node name="jump" type="Control" parent="outline/inline/keybinds/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="label" type="Label" parent="outline/inline/keybinds/VBoxContainer/jump"]
-layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-offset_bottom = 76.0
-grow_horizontal = 2
-theme = ExtResource("1_ad0vq")
-theme_override_font_sizes/font_size = 50
-text = "Jump : Space / Up arrow"
-
 [node name="keybind_popup" type="ColorRect" parent="outline/inline/keybinds"]
 visible = false
+z_index = 1
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -241,12 +174,57 @@ or \"esc\" to exit"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="ScrollContainer" type="ScrollContainer" parent="outline/inline/keybinds"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = 140.0
+offset_right = -20.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_ad0vq")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="outline/inline/keybinds/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="category" type="Label" parent="outline/inline/keybinds/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_ad0vq")
+theme_override_font_sizes/font_size = 50
+text = "Game"
+
+[node name="left" type="Label" parent="outline/inline/keybinds/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 1
+theme = ExtResource("1_ad0vq")
+theme_override_font_sizes/font_size = 50
+text = "Left : A / Left Arrow"
+
+[node name="right" type="Label" parent="outline/inline/keybinds/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 1
+theme = ExtResource("1_ad0vq")
+theme_override_font_sizes/font_size = 50
+text = "Right : D / Right Arrow"
+
+[node name="jump" type="Label" parent="outline/inline/keybinds/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 1
+theme = ExtResource("1_ad0vq")
+theme_override_font_sizes/font_size = 50
+text = "Jump : Space / Up arrow"
+
 [connection signal="pressed" from="outline/inline/main/back" to="." method="_on_back_pressed"]
 [connection signal="pressed" from="outline/inline/main/keybinds" to="." method="_on_keybinds_pressed"]
 [connection signal="pressed" from="outline/inline/keybinds/to_main" to="." method="_on_to_main_pressed"]
-[connection signal="mouse_entered" from="outline/inline/keybinds/VBoxContainer/left" to="." method="_on_left_mouse_entered"]
-[connection signal="mouse_exited" from="outline/inline/keybinds/VBoxContainer/left" to="." method="_on_left_mouse_exited"]
-[connection signal="mouse_entered" from="outline/inline/keybinds/VBoxContainer/right" to="." method="_on_right_mouse_entered"]
-[connection signal="mouse_exited" from="outline/inline/keybinds/VBoxContainer/right" to="." method="_on_right_mouse_exited"]
-[connection signal="mouse_entered" from="outline/inline/keybinds/VBoxContainer/jump" to="." method="_on_jump_mouse_entered"]
-[connection signal="mouse_exited" from="outline/inline/keybinds/VBoxContainer/jump" to="." method="_on_jump_mouse_exited"]
+[connection signal="mouse_entered" from="outline/inline/keybinds/ScrollContainer/VBoxContainer/left" to="." method="_on_left_mouse_entered"]
+[connection signal="mouse_exited" from="outline/inline/keybinds/ScrollContainer/VBoxContainer/left" to="." method="_on_left_mouse_exited"]
+[connection signal="mouse_entered" from="outline/inline/keybinds/ScrollContainer/VBoxContainer/right" to="." method="_on_right_mouse_entered"]
+[connection signal="mouse_exited" from="outline/inline/keybinds/ScrollContainer/VBoxContainer/right" to="." method="_on_right_mouse_exited"]
+[connection signal="mouse_entered" from="outline/inline/keybinds/ScrollContainer/VBoxContainer/jump" to="." method="_on_jump_mouse_entered"]
+[connection signal="mouse_exited" from="outline/inline/keybinds/ScrollContainer/VBoxContainer/jump" to="." method="_on_jump_mouse_exited"]

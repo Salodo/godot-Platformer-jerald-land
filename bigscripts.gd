@@ -33,24 +33,62 @@ var block_id_to_scene:Dictionary = {
 	"3":"res://source/block_scenes/jump_pad/block.tscn",
 }
 
-var editor_mode = false
+var editor_mode:bool = false
+var map_change:bool = false
 
-var map_change = false
+const path:String = "user://"
+const levels_path:String = path+"levels"
+const campaign_levels_path:String = path+"campaign_levels"
+const settings_path:String = path+"settings.dat"
 
-var settings = {
+var settings:Dictionary = {
 	"keybinds":{
 		"left":InputMap.action_get_events("left")[0],
 		"right":InputMap.action_get_events("right")[0],
 		"jump":InputMap.action_get_events("jump")[0],
-	}
+	},
+	"customization":{
+		"color":"ffffffff"
+	},
 }
 
-func save_settings():
-	pass
+"ffff40"
+#CUSTOMIZATION related
+
+func customize(nodes:Array = []):
+	for i in nodes:
+		i.modulate = Color(settings["customization"]["color"])
+
+#SAVING related
+
+
+func _ready():
+	#InputMap.action_add_event("jump", InputMap.action_get_events("left")[0])
 	
+	if not DirAccess.dir_exists_absolute(levels_path):
+		print("making levels path")
+		DirAccess.make_dir_absolute(levels_path)
+	if not FileAccess.file_exists(settings_path):
+		print("making settings file")
+		save_settings()
+	else:
+		load_settings()
+
+func save_settings():
+	var file = FileAccess.open(settings_path, FileAccess.WRITE)
+	file.store_var(settings, true)
+	file = null
 
 func load_settings():
-	pass
+	var file = FileAccess.open(settings_path, FileAccess.READ)
+	settings = file.get_var(true)
+	file = null
+	
+	for keybind in settings["keybinds"]:
+		InputMap.action_erase_events(keybind)
+		InputMap.action_add_event(keybind, settings["keybinds"][keybind])
+
+#MAP RELATED
 
 func grab_map(folder, spawn=Vector2(0,0)):
 	var map_dict:Dictionary = {}

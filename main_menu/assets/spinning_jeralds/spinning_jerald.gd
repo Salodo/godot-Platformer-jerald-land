@@ -14,6 +14,7 @@ func calculate_based_on_size():
 	speed = (1/jerald.scale.x)*5000
 
 func _ready():
+	Bigscripts.customize([self])
 	randomize_jerald()
 	calculate_based_on_size()
 

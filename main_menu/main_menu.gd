@@ -1,9 +1,5 @@
 extends Node2D
 
-const path = "user://"
-const levels_path = path+"levels"
-const campaign_levels_path = path+"campaign_levels"
-
 @onready var animation = $CanvasLayer/main_ui/animation
 @onready var jerald_animation = $jerald_animation
 
@@ -43,9 +39,9 @@ func _ready():
 	
 	settings_ui.connect("_on_settings_ui_close", self._on_back_pressed)
 	
-	if not DirAccess.dir_exists_absolute(levels_path):
-		DirAccess.make_dir_absolute(levels_path)
-		print("making levels path")
+	Bigscripts.customize([main_ui,campaign_ui,settings_ui])
+	
+
 
 #HANDLES BUTTONS
 func _on_play_pressed():

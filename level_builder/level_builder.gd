@@ -5,6 +5,7 @@ extends Node2D
 @onready var block_container = $block_folder
 @onready var jerald = $jerald
 @onready var properties_menu = $CanvasLayer/Control/properties/ScrollContainer/MarginContainer/VBoxContainer
+@onready var pause_menu = $CanvasLayer/pause_ui
 
 var block_icons = [
 {"name":"cube","icon":"res://source/block_scenes/default_block/default_block.png"},
@@ -38,6 +39,11 @@ func _ready():
 		load_map(Bigscripts.map_data)
 	_on_reset_cam_pressed()
 	previous_mouse_snapped_pos = position_to_grid(get_global_mouse_position())
+	
+	pause_menu.connect("_on_pause_ui_close", self._on_pause_ui_close)
+
+func _on_pause_ui_close():
+	pause_menu.close()
 
 func cursor_state(state:int):
 	current_cursor_state = state
@@ -78,6 +84,9 @@ func _process(delta):
 			if not on_ui_element:
 				properties_menu.close()
 				break
+	
+	if Input.is_action_just_pressed("escape"):
+		pause_menu.open()
 	
 	if Input.is_action_just_pressed("place") and can_place and not on_ui_element:
 		cursor_state(1)

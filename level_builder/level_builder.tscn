@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://c5ly2a3bwne5u"]
+[gd_scene load_steps=14 format=3 uid="uid://c5ly2a3bwne5u"]
 
 [ext_resource type="Script" path="res://level_builder/level_builder.gd" id="1_dhbf8"]
 [ext_resource type="Texture2D" uid="uid://dyjxemk2c3o6k" path="res://level_builder/cursor/cursor.png" id="2_whj7w"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://c0xsxm1gscxs7" path="res://source/block_scenes/default_block/default_block.png" id="6_7wfgo"]
 [ext_resource type="Script" path="res://level_builder/properties_menu/properties_menu.gd" id="6_poh4c"]
 [ext_resource type="Script" path="res://level_builder/properties_menu/title.gd" id="7_mq7d5"]
+[ext_resource type="PackedScene" uid="uid://bf3jay3y84v7f" path="res://source/shared_ui/pause_menu/pause_menu.tscn" id="8_5ypui"]
 [ext_resource type="Texture2D" uid="uid://bxg8rfq0f4cl4" path="res://source/player/jerald_original.png" id="8_xlexu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_48r8n"]
@@ -197,6 +198,9 @@ layout_mode = 2
 [node name="Button" type="Button" parent="CanvasLayer/Control/properties/ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 text = "Apply"
+
+[node name="pause_ui" parent="CanvasLayer" instance=ExtResource("8_5ypui")]
+visible = false
 
 [node name="jerald" type="StaticBody2D" parent="." groups=["player_dummy"]]
 

@@ -219,8 +219,61 @@ theme = ExtResource("1_ad0vq")
 theme_override_font_sizes/font_size = 50
 text = "Jump : Space / Up arrow"
 
+[node name="customization" type="Control" parent="outline/inline"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="title" type="Label" parent="outline/inline/customization"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 148.0
+grow_horizontal = 2
+theme = ExtResource("1_ad0vq")
+theme_override_font_sizes/font_size = 100
+text = "Customization"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="to_main" type="TextureButton" parent="outline/inline/customization"]
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 44.0
+offset_bottom = 44.0
+scale = Vector2(5, 5)
+texture_normal = ExtResource("2_6xext")
+texture_hover = ExtResource("3_uxwt2")
+
+[node name="Control" type="Control" parent="outline/inline/customization"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 144.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="title2" type="Label" parent="outline/inline/customization/Control"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 148.0
+grow_horizontal = 2
+theme = ExtResource("1_ad0vq")
+theme_override_font_sizes/font_size = 100
+text = "Tamatie
+HEHE"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [connection signal="pressed" from="outline/inline/main/back" to="." method="_on_back_pressed"]
 [connection signal="pressed" from="outline/inline/main/keybinds" to="." method="_on_keybinds_pressed"]
+[connection signal="pressed" from="outline/inline/main/customisation" to="." method="_on_customisation_pressed"]
 [connection signal="pressed" from="outline/inline/keybinds/to_main" to="." method="_on_to_main_pressed"]
 [connection signal="mouse_entered" from="outline/inline/keybinds/ScrollContainer/VBoxContainer/left" to="." method="_on_left_mouse_entered"]
 [connection signal="mouse_exited" from="outline/inline/keybinds/ScrollContainer/VBoxContainer/left" to="." method="_on_left_mouse_exited"]
@@ -228,3 +281,4 @@ text = "Jump : Space / Up arrow"
 [connection signal="mouse_exited" from="outline/inline/keybinds/ScrollContainer/VBoxContainer/right" to="." method="_on_right_mouse_exited"]
 [connection signal="mouse_entered" from="outline/inline/keybinds/ScrollContainer/VBoxContainer/jump" to="." method="_on_jump_mouse_entered"]
 [connection signal="mouse_exited" from="outline/inline/keybinds/ScrollContainer/VBoxContainer/jump" to="." method="_on_jump_mouse_exited"]
+[connection signal="pressed" from="outline/inline/customization/to_main" to="." method="_on_to_main_pressed"]

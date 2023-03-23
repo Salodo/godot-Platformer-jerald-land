@@ -48,7 +48,7 @@ var settings:Dictionary = {
 		"jump":InputMap.action_get_events("jump")[0],
 	},
 	"customization":{
-		"color":"ffffffff"
+		"color":"ffffff"
 	},
 }
 

@@ -1,0 +1,36 @@
+[gd_scene load_steps=3 format=3 uid="uid://bp3vw275paxa1"]
+
+[ext_resource type="Script" path="res://source/blocks/text_block.gd" id="1_kbcq8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8mn77"]
+size = Vector2(16, 16)
+
+[node name="block" type="StaticBody2D"]
+collision_layer = 18
+collision_mask = 18
+script = ExtResource("1_kbcq8")
+
+[node name="texture" type="Sprite2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+light_mask = 16
+visibility_layer = 16
+shape = SubResource("RectangleShape2D_8mn77")
+
+[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
+
+[node name="label" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -16.0
+offset_top = -4.0
+offset_right = 291.0
+offset_bottom = 68.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.1, 0.1)
+theme_override_font_sizes/font_size = 50
+text = "Hello daarq"

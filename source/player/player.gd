@@ -17,6 +17,7 @@ var on_air_velocity:Vector2 = Vector2(0,0);
 
 @onready var default_ui = $CanvasLayer/ui
 @onready var win_ui = $CanvasLayer/wim_ui
+@onready var pause_ui = $CanvasLayer/pause_ui
 
 @onready var after_timer = $jump_timer
 @onready var import = $CanvasLayer/ui/import
@@ -29,6 +30,12 @@ func _ready():
 		default_ui.show()
 	else:
 		default_ui.hide()
+	
+	pause_ui.connect("_on_pause_ui_close", self._on_pause_ui_close)
+	
+func _on_pause_ui_close():
+	pause_ui.close()
+	in_ui = false
 
 func jump():
 	velocity.y = JUMP_VELOCITY
@@ -57,6 +64,10 @@ func _physics_process(delta):
 		was_on_ground_last_frame = false
 		after_jump = true
 		after_timer.start()
+	
+	#PAUSE
+	if Input.is_action_just_pressed("escape"):
+		pause_ui.open()
 	
 	#JUMP
 	if Input.is_action_just_pressed("jump"):

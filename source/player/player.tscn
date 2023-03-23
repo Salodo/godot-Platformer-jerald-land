@@ -1,10 +1,11 @@
-[gd_scene load_steps=12 format=3 uid="uid://beyb7myg0ha0t"]
+[gd_scene load_steps=13 format=3 uid="uid://beyb7myg0ha0t"]
 
 [ext_resource type="Script" path="res://source/player/player.gd" id="1_y6p4g"]
 [ext_resource type="Theme" uid="uid://duscod7gw58fs" path="res://theming/default.tres" id="3_1btrs"]
 [ext_resource type="Texture2D" uid="uid://cnwmn4br0cfpk" path="res://source/player/Jerald.png" id="4_h4ya0"]
 [ext_resource type="Texture2D" uid="uid://da81jdc8nqlnk" path="res://source/player/Jerald_funny_walk.png" id="4_ubwep"]
 [ext_resource type="FontFile" uid="uid://bwfrsquh0ifih" path="res://theming/DotGothic16/DotGothic16-Regular.ttf" id="5_irwgm"]
+[ext_resource type="PackedScene" uid="uid://bf3jay3y84v7f" path="res://source/shared_ui/pause_menu/pause_menu.tscn" id="6_5g825"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rprth"]
 atlas = ExtResource("4_ubwep")
@@ -183,6 +184,9 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("3_1btrs")
 text = "Main menu"
+
+[node name="pause_ui" parent="CanvasLayer" instance=ExtResource("6_5g825")]
+visible = false
 
 [connection signal="timeout" from="jump_timer" to="." method="_on_jump_timer_timeout"]
 [connection signal="pressed" from="CanvasLayer/ui/import" to="." method="_on_button_pressed"]

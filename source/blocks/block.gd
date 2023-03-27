@@ -7,7 +7,7 @@ var block_id = 0
 const CELL_SIZE = 16
 
 func _init():
-	block_dat = default_block_dat
+	default_block_dat = block_dat
 
 func position_to_grid(pos:Vector2):
 	return (pos / CELL_SIZE).floor()
@@ -31,3 +31,6 @@ func set_dat(dat:Dictionary):
 		global_position = grid_to_position(pos)
 	if dat.has("d"):
 		block_dat = dat["d"]
+
+func set_block_dat(dat:Dictionary):
+	block_dat = dat

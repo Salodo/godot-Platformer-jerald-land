@@ -12,6 +12,7 @@ var block_icons = [
 {"name":"spike","icon":"res://source/block_scenes/spike/spike.png"},
 {"name":"checkpoint","icon":"res://source/block_scenes/checkpoint/icon.png"},
 {"name":"jump_pad","icon":"res://source/block_scenes/jump_pad/jump_pad.png"},
+{"name":"text_block","icon":"res://source/block_scenes/text_block/text_block_icon.png"},
 ]
 
 const CELL_SIZE:int = 16

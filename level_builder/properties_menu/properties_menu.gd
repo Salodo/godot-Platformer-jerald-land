@@ -47,7 +47,7 @@ func register_menu(dat:Dictionary, _name:String, _selected_node):
 
 func _on_button_pressed():
 	if selected_node:
-		selected_node.block_dat = get_properties()
+		selected_node.set_block_dat(get_properties())
 	close()
 
 func close():

@@ -5,4 +5,4 @@ func register(_value:String, _name:String):
 	text = _value
 
 func get_val():
-	return [placeholder_text, text]
+	return [text, placeholder_text]

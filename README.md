@@ -7,14 +7,14 @@ Developemt on godot 4.0-Stable
 
 _Features_
 
-- blocks
+## blocks
 
   #default block
   #spikes
   #checkpoints
   #jump pads
 
-- level editor
+## level editor
 
   #place tiles
   #destroy tiles

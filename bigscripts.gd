@@ -24,7 +24,7 @@ var map_data:Dictionary = {
 		]
 		}
 
-var editor_load_map:bool = false
+var editor_load_map:bool = true
 
 var block_id_to_scene:Dictionary = {
 	"0":"res://source/block_scenes/default_block/block.tscn",
@@ -41,6 +41,8 @@ const path:String = "user://"
 const levels_path:String = path+"levels"
 const campaign_levels_path:String = path+"campaign_levels"
 const settings_path:String = path+"settings.dat"
+
+var loaded_level_path:String
 
 var settings:Dictionary = {
 	"keybinds":{
@@ -64,16 +66,25 @@ func customize(nodes:Array = []):
 
 
 func _ready():
-	#InputMap.action_add_event("jump", InputMap.action_get_events("left")[0])
 	
 	if not DirAccess.dir_exists_absolute(levels_path):
 		print("making levels path")
 		DirAccess.make_dir_absolute(levels_path)
+		
+		var file = FileAccess.open(levels_path+"/level.dat", FileAccess.WRITE)
+		file.store_var(Bigscripts.map_data, true)
+		file = null
+		
 	if not FileAccess.file_exists(settings_path):
 		print("making settings file")
 		save_settings()
 	else:
 		load_settings()
+
+func save_map():
+	var file = FileAccess.open(loaded_level_path, FileAccess.WRITE)
+	file.store_var(map_data)
+	file = null
 
 func save_settings():
 	var file = FileAccess.open(settings_path, FileAccess.WRITE)
@@ -98,7 +109,7 @@ func grab_map(folder, spawn=Vector2(0,0)):
 	#m = map
 	#s = spawn_pos
 	
-	map_dict["t"] = "demo"
+	map_dict["t"] = map_data["t"]
 	map_dict["s"] = [spawn.x,spawn.y]
 	map_dict["m"] = []
 	
@@ -140,6 +151,6 @@ func has_map_changed():
 		return true
 	return false
 
-func _process(delta):
+func _process(_delta):
 	if Input.is_action_just_pressed("menu"):
 		get_tree().change_scene_to_file("res://main_menu/main_menu.tscn")

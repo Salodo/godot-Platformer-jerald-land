@@ -20,7 +20,6 @@ var on_air_velocity:Vector2 = Vector2(0,0);
 @onready var pause_ui = $CanvasLayer/pause_ui
 
 @onready var after_timer = $jump_timer
-@onready var import = $CanvasLayer/ui/import
 @onready var edit = $CanvasLayer/ui/edit
 @onready var texture = $Jerald
 
@@ -94,7 +93,7 @@ func _physics_process(delta):
 	
 	move_and_slide()
 
-func _input(event):
+func _input(_event):
 	if Input.is_action_just_pressed("reset"):
 		kill()
 
@@ -118,9 +117,9 @@ func win():
 	win_ui.show()
 	in_ui = true
 
-func _on_button_pressed():
-	import.release_focus()
-	Bigscripts.change_map((JSON.parse_string(DisplayServer.clipboard_get())))
+#func _on_button_pressed():
+#	import.release_focus()
+#	Bigscripts.change_map((JSON.parse_string(DisplayServer.clipboard_get())))
 
 func _on_edit_pressed():
 	edit.release_focus()

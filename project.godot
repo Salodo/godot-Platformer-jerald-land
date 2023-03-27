@@ -22,6 +22,7 @@ CampaighnMaps="*res://campaighn_maps.gd"
 
 [display]
 
+window/vsync/vsync_mode=2
 window/stretch/mode="canvas_items"
 window/stretch/aspect="keep_height"
 

@@ -87,6 +87,7 @@ func _process(delta):
 				break
 	
 	if Input.is_action_just_pressed("escape"):
+		save_map()
 		pause_menu.open()
 	
 	if Input.is_action_just_pressed("place") and can_place and not on_ui_element:
@@ -184,7 +185,7 @@ func _on_import_pressed():
 @onready var up_button = $CanvasLayer/Control/up
 @onready var down_button = $CanvasLayer/Control/down
 
-func _input(event):
+func _input(_event):
 	if Input.is_action_just_pressed("block_up"):
 		_on_down_pressed()
 	elif Input.is_action_just_pressed("block_down"):
@@ -203,14 +204,34 @@ func _on_up_pressed():
 	if selected_block < block_icons.size()-1:
 		select_block(selected_block+1)
 
-#HANDLES PLAYTESTING and camera reset
+#HANDLES PLAYTESTING and camera reset and save Buttons
 @onready var playtes_button = $CanvasLayer/Control/playtest
 
-func _on_playtest_pressed():
-	playtes_button.release_focus()
+func upload_map():
 	var s = position_to_grid(jerald.global_position)/16
 	var map_dat:Dictionary = JSON.parse_string(Bigscripts.grab_map(block_container, s))
 	Bigscripts.change_map(map_dat)
+
+func _on_playtest_pressed():
+	playtes_button.release_focus()
+	upload_map()
+	save_map()
 	get_tree().change_scene_to_file("res://level_loader/main.tscn")
+
 func _on_reset_cam_pressed():
 	camera.global_position = jerald.global_position
+
+
+#Saving
+
+func _notification(what):
+	if what == NOTIFICATION_WM_CLOSE_REQUEST:
+		save_map()
+		get_tree().quit() # default behavior
+
+func _on_save_timer_timeout():
+	save_map()
+
+func save_map():
+	upload_map()
+	Bigscripts.save_map()

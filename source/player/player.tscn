@@ -86,17 +86,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="import" type="Button" parent="CanvasLayer/ui"]
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -126.0
-offset_bottom = 63.993
-grow_horizontal = 0
-theme = ExtResource("3_1btrs")
-text = "import"
-
 [node name="edit" type="Button" parent="CanvasLayer/ui"]
 layout_mode = 0
 offset_right = 126.0
@@ -189,7 +178,6 @@ text = "Main menu"
 visible = false
 
 [connection signal="timeout" from="jump_timer" to="." method="_on_jump_timer_timeout"]
-[connection signal="pressed" from="CanvasLayer/ui/import" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/ui/edit" to="." method="_on_edit_pressed"]
 [connection signal="pressed" from="CanvasLayer/wim_ui/outer/restart" to="." method="_on_restart_pressed"]
 [connection signal="pressed" from="CanvasLayer/wim_ui/outer/main_menu" to="." method="_on_main_menu_pressed"]

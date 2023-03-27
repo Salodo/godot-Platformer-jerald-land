@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://b17uy17vhnsk0"]
+[gd_scene load_steps=27 format=3 uid="uid://b17uy17vhnsk0"]
 
 [ext_resource type="Theme" uid="uid://duscod7gw58fs" path="res://theming/default.tres" id="1_4norm"]
 [ext_resource type="Script" path="res://main_menu/main_menu.gd" id="1_x2l4x"]
@@ -15,6 +15,11 @@
 [ext_resource type="Texture2D" uid="uid://c7ptg1o18x78r" path="res://main_menu/assets/buttons/settings_selected.png" id="8_y5t64"]
 [ext_resource type="Texture2D" uid="uid://cgsnfqj18rr3q" path="res://main_menu/assets/buttons/back_selected.png" id="9_41l30"]
 [ext_resource type="PackedScene" uid="uid://biao7eeq4hdvg" path="res://source/shared_ui/settings_ui/settings_ui.tscn" id="14_k2au4"]
+[ext_resource type="Script" path="res://main_menu/custom_level_ui.gd" id="15_sxgc2"]
+[ext_resource type="PackedScene" uid="uid://deiah42e8rpxf" path="res://main_menu/assets/level_selector_screen/add_level/add_level.tscn" id="16_kna47"]
+[ext_resource type="Script" path="res://main_menu/assets/level_selector_screen/world_name_popup/world_name_popup.gd" id="16_lfgc3"]
+[ext_resource type="PackedScene" uid="uid://dtjq6nqldvsw" path="res://main_menu/assets/level_selector_screen/world_name_popup/world_name_popup.tscn" id="17_l764b"]
+[ext_resource type="PackedScene" uid="uid://c7mqusokg1tj7" path="res://main_menu/assets/level_selector_screen/world_deletion_confirmation_screen/confirmation.tscn" id="19_7jcaw"]
 
 [sub_resource type="Animation" id="Animation_ai4fr"]
 length = 0.001
@@ -358,6 +363,105 @@ texture_hover = ExtResource("9_41l30")
 [node name="settings_ui" parent="CanvasLayer" instance=ExtResource("14_k2au4")]
 visible = false
 
+[node name="custom_level_ui" type="Control" parent="CanvasLayer"]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("15_sxgc2")
+
+[node name="outline" type="ColorRect" parent="CanvasLayer/custom_level_ui"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 50.0
+offset_top = 50.0
+offset_right = -50.0
+offset_bottom = -50.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(400, 300)
+script = ExtResource("16_lfgc3")
+
+[node name="inline" type="ColorRect" parent="CanvasLayer/custom_level_ui/outline"]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(200, 300)
+color = Color(0, 0, 0, 1)
+
+[node name="title" type="Label" parent="CanvasLayer/custom_level_ui/outline/inline"]
+layout_mode = 0
+anchor_right = 1.0
+offset_bottom = 121.0
+grow_horizontal = 2
+theme = ExtResource("1_4norm")
+theme_override_font_sizes/font_size = 50
+text = "Editor"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="back" type="TextureButton" parent="CanvasLayer/custom_level_ui/outline/inline"]
+layout_mode = 0
+offset_left = 62.0
+offset_top = 38.0
+offset_right = 86.0
+offset_bottom = 62.0
+scale = Vector2(5, 5)
+pivot_offset = Vector2(12, 12)
+texture_normal = ExtResource("8_wm2k5")
+texture_hover = ExtResource("9_41l30")
+
+[node name="VFlowContainer" type="VFlowContainer" parent="CanvasLayer/custom_level_ui/outline/inline"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = 106.0
+offset_right = -20.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="CanvasLayer/custom_level_ui/outline/inline"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = 108.0
+offset_right = -20.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/custom_level_ui/outline/inline/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Control" parent="CanvasLayer/custom_level_ui/outline/inline/ScrollContainer/VBoxContainer" instance=ExtResource("16_kna47")]
+layout_mode = 2
+
+[node name="world_name_popup" parent="CanvasLayer/custom_level_ui/outline/inline" instance=ExtResource("17_l764b")]
+visible = false
+layout_mode = 1
+
+[node name="confirmation" parent="CanvasLayer/custom_level_ui/outline/inline" instance=ExtResource("19_7jcaw")]
+visible = false
+layout_mode = 1
+
 [node name="jerald_animation" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_nt2uw")
@@ -380,4 +484,5 @@ autostart = true
 [connection signal="pressed" from="CanvasLayer/campaign_ui/outline/inline/right" to="CanvasLayer/campaign_ui" method="_on_right_pressed"]
 [connection signal="pressed" from="CanvasLayer/campaign_ui/outline/inline/left" to="CanvasLayer/campaign_ui" method="_on_left_pressed"]
 [connection signal="pressed" from="CanvasLayer/campaign_ui/outline/inline/back" to="." method="_on_back_pressed"]
+[connection signal="pressed" from="CanvasLayer/custom_level_ui/outline/inline/back" to="." method="_on_back_pressed"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

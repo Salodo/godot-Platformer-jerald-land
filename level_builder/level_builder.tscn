@@ -75,7 +75,7 @@ anchor_left = 1.0
 anchor_right = 1.0
 offset_left = -126.0
 offset_top = 64.0
-offset_bottom = 127.993
+offset_bottom = 128.0
 grow_horizontal = 0
 theme = ExtResource("4_i837x")
 text = "import
@@ -87,11 +87,11 @@ anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
 offset_left = -126.0
-offset_top = 127.0
-offset_bottom = 191.0
+offset_top = 128.0
+offset_bottom = 192.0
 grow_horizontal = 0
 theme = ExtResource("4_i837x")
-text = "reset camera"
+text = "reset cam"
 
 [node name="playtest" type="Button" parent="CanvasLayer/Control"]
 layout_mode = 0
@@ -210,6 +210,10 @@ texture = ExtResource("8_xlexu")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="jerald"]
 shape = SubResource("RectangleShape2D_jddcm")
 
+[node name="Save_timer" type="Timer" parent="."]
+wait_time = 120.0
+autostart = true
+
 [connection signal="body_entered" from="Cursor/Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Cursor/Area2D" to="." method="_on_area_2d_body_exited"]
 [connection signal="mouse_entered" from="CanvasLayer/Control" to="." method="_on_control_mouse_entered"]
@@ -221,3 +225,4 @@ shape = SubResource("RectangleShape2D_jddcm")
 [connection signal="pressed" from="CanvasLayer/Control/up" to="." method="_on_up_pressed"]
 [connection signal="pressed" from="CanvasLayer/Control/down" to="." method="_on_down_pressed"]
 [connection signal="pressed" from="CanvasLayer/Control/properties/ScrollContainer/MarginContainer/VBoxContainer/Button" to="CanvasLayer/Control/properties/ScrollContainer/MarginContainer/VBoxContainer" method="_on_button_pressed"]
+[connection signal="timeout" from="Save_timer" to="." method="_on_save_timer_timeout"]

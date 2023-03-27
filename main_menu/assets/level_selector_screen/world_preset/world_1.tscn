@@ -1,0 +1,106 @@
+[gd_scene load_steps=6 format=3 uid="uid://cm85yscecaa33"]
+
+[ext_resource type="Theme" uid="uid://duscod7gw58fs" path="res://theming/default.tres" id="1_2mr2i"]
+[ext_resource type="Script" path="res://main_menu/assets/level_selector_screen/world_preset/world_1.gd" id="1_8adua"]
+[ext_resource type="Texture2D" uid="uid://dll0eilg1vbn0" path="res://main_menu/assets/level_selector_screen/world_preset/play.png" id="1_ru3u3"]
+[ext_resource type="Texture2D" uid="uid://co2gtyvj2eraa" path="res://main_menu/assets/level_selector_screen/world_preset/pencil.png" id="2_8320k"]
+[ext_resource type="Texture2D" uid="uid://darvg0705bmlx" path="res://main_menu/assets/level_selector_screen/world_preset/trash_icon.png" id="4_21lfl"]
+
+[node name="World_1" type="Control"]
+custom_minimum_size = Vector2(100, 60)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 605.0
+offset_bottom = 60.0
+script = ExtResource("1_8adua")
+
+[node name="outline" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="inline" type="ColorRect" parent="outline"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = -10.0
+offset_bottom = -10.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="play" type="TextureButton" parent="outline/inline"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -16.0
+offset_top = -8.0
+offset_right = -10.0
+offset_bottom = 8.0
+grow_horizontal = 0
+grow_vertical = 2
+scale = Vector2(2, 2)
+pivot_offset = Vector2(16, 8)
+texture_normal = ExtResource("1_ru3u3")
+
+[node name="editor" type="TextureButton" parent="outline/inline"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -16.0
+offset_top = -8.0
+offset_right = -52.0
+offset_bottom = 8.0
+grow_horizontal = 0
+grow_vertical = 2
+scale = Vector2(2, 2)
+pivot_offset = Vector2(16, 8)
+texture_normal = ExtResource("2_8320k")
+
+[node name="delete" type="TextureButton" parent="outline/inline"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -16.0
+offset_top = -8.0
+offset_right = -94.0
+offset_bottom = 8.0
+grow_horizontal = 0
+grow_vertical = 2
+scale = Vector2(2, 2)
+pivot_offset = Vector2(16, 8)
+texture_normal = ExtResource("4_21lfl")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 20.0
+offset_top = -23.5
+offset_right = 230.0
+offset_bottom = 23.5
+grow_vertical = 2
+size_flags_vertical = 3
+theme = ExtResource("1_2mr2i")
+theme_override_font_sizes/font_size = 30
+text = "My cool wereld"
+
+[connection signal="pressed" from="outline/inline/play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="outline/inline/editor" to="." method="_on_editor_pressed"]
+[connection signal="pressed" from="outline/inline/delete" to="." method="_on_delete_pressed"]

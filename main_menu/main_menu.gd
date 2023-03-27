@@ -6,6 +6,7 @@ extends Node2D
 @onready var main_ui = $CanvasLayer/main_ui
 @onready var campaign_ui = $CanvasLayer/campaign_ui
 @onready var settings_ui = $CanvasLayer/settings_ui
+@onready var custom_level_ui = $CanvasLayer/custom_level_ui
 
 func change_state(state:int):
 	match state:
@@ -13,15 +14,17 @@ func change_state(state:int):
 			spawn_jerald()
 			campaign_ui.close()
 			settings_ui.close()
+			custom_level_ui.close()
 			main_ui.show()
 		1:
 			campaign_ui.open()
-			settings_ui.close()
 			main_ui.hide()
 		2:
 			settings_ui.open()
 			main_ui.hide()
-			campaign_ui.close()
+		3:
+			main_ui.hide()
+			custom_level_ui.open()
 
 func spawn_jerald():
 	var new_spinning_jerald = load("res://main_menu/assets/spinning_jeralds/spinning_jerald.tscn").instantiate()
@@ -47,11 +50,11 @@ func _ready():
 func _on_play_pressed():
 	Bigscripts.editor_mode = false
 	change_state(1)
-	#get_tree().change_scene_to_file("res://level_loader/main.tscn")
 
 func _on_editor_pressed():
-	Bigscripts.editor_mode = true
-	get_tree().change_scene_to_file("res://level_builder/level_builder.tscn")
+	change_state(3)
+	#Bigscripts.editor_mode = true
+	#get_tree().change_scene_to_file("res://level_builder/level_builder.tscn")
 
 func _on_settings_pressed():
 	change_state(2)

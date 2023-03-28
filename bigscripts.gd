@@ -3,6 +3,9 @@ extends Node
 var default_spawn_pos:Vector2 = Vector2(0,0)
 var spawn_pos:Vector2 = Vector2(0,0)
 
+var campaign_stats:Dictionary = {}
+var is_in_campaign_map:bool = false
+
 #t = title
 #d = description
 #m = map
@@ -39,7 +42,7 @@ var map_change:bool = false
 
 const path:String = "user://"
 const levels_path:String = path+"levels"
-const campaign_levels_path:String = path+"campaign_levels"
+const campaign_stats_path:String = path+"campaign_stats"
 const settings_path:String = path+"settings.dat"
 
 var loaded_level_path:String
@@ -80,11 +83,45 @@ func _ready():
 		save_settings()
 	else:
 		load_settings()
+		
+	if not DirAccess.dir_exists_absolute(campaign_stats_path):
+		print("making campaighn stats file")
+		DirAccess.make_dir_absolute(campaign_stats_path)
+
 
 func save_map():
 	var file = FileAccess.open(loaded_level_path, FileAccess.WRITE)
 	file.store_var(map_data)
 	file = null
+
+#STATS
+func increase_stat(stat_name:String, amount:int=1):
+	if is_in_campaign_map:
+		if campaign_stats.has(stat_name):
+			campaign_stats[stat_name] += amount
+		else:
+			campaign_stats[stat_name] = amount
+		
+		save_stats(map_data["t"], campaign_stats)
+		return
+
+func save_stats(_name:String, dat:Dictionary):
+	
+	var _path = campaign_stats_path+"/"+_name+".dat"
+	var file = FileAccess.open(_path, FileAccess.WRITE)
+	file.store_var(dat)
+	file = null
+
+func load_stats(_name:String):
+	var _path = campaign_stats_path+"/"+_name+".dat"
+	if FileAccess.file_exists(_path):
+		var file = FileAccess.open(_path, FileAccess.READ)
+		var dat = file.get_var()
+		file = null
+		return dat
+	else:
+		save_stats(_name, {})
+		return {}
 
 func save_settings():
 	var file = FileAccess.open(settings_path, FileAccess.WRITE)
@@ -139,7 +176,12 @@ func load_map(map_code:Array,folder:Node2D):
 		
 		folder.add_child(new_block)
 
-func change_map(data:Dictionary):
+func change_map(data:Dictionary, canpaign_map:bool = false):
+	is_in_campaign_map = canpaign_map
+	if canpaign_map:
+		campaign_stats = load_stats(data["t"])
+	
+	
 	map_data = data
 	spawn_pos = Vector2(data["s"][0],data["s"][1])*16
 	default_spawn_pos = spawn_pos
@@ -150,7 +192,3 @@ func has_map_changed():
 		map_change = false
 		return true
 	return false
-
-func _process(_delta):
-	if Input.is_action_just_pressed("menu"):
-		get_tree().change_scene_to_file("res://main_menu/main_menu.tscn")

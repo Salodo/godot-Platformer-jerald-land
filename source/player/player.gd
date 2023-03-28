@@ -37,6 +37,7 @@ func _on_pause_ui_close():
 	in_ui = false
 
 func jump():
+	Bigscripts.increase_stat("jumps")
 	velocity.y = JUMP_VELOCITY
 
 func _physics_process(delta):
@@ -108,6 +109,8 @@ func kill(force_restart:bool = false):
 	else:
 		global_position = Bigscripts.spawn_pos
 		velocity = Vector2(0,0)
+	
+	Bigscripts.increase_stat("deaths")
 
 func damage(amount):
 	if amount > 0:
@@ -115,6 +118,7 @@ func damage(amount):
 
 func win():
 	win_ui.show()
+	Bigscripts.increase_stat("completions")
 	in_ui = true
 
 #func _on_button_pressed():

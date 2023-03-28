@@ -6,4 +6,3 @@ audio
 music
 
 campaign levels
-campaign stats

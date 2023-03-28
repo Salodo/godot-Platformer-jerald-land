@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://b17uy17vhnsk0"]
+[gd_scene load_steps=30 format=3 uid="uid://b17uy17vhnsk0"]
 
 [ext_resource type="Theme" uid="uid://duscod7gw58fs" path="res://theming/default.tres" id="1_4norm"]
 [ext_resource type="Script" path="res://main_menu/main_menu.gd" id="1_x2l4x"]
@@ -14,10 +14,13 @@
 [ext_resource type="Texture2D" uid="uid://cd4oharpsgyrw" path="res://main_menu/assets/buttons/back_normal.png" id="8_wm2k5"]
 [ext_resource type="Texture2D" uid="uid://c7ptg1o18x78r" path="res://main_menu/assets/buttons/settings_selected.png" id="8_y5t64"]
 [ext_resource type="Texture2D" uid="uid://cgsnfqj18rr3q" path="res://main_menu/assets/buttons/back_selected.png" id="9_41l30"]
+[ext_resource type="Texture2D" uid="uid://byudx5p0va63l" path="res://main_menu/assets/campaighn_map_screen/check_mark.png" id="14_ectbg"]
 [ext_resource type="PackedScene" uid="uid://biao7eeq4hdvg" path="res://source/shared_ui/settings_ui/settings_ui.tscn" id="14_k2au4"]
+[ext_resource type="Texture2D" uid="uid://depbomb4atpuu" path="res://main_menu/assets/campaighn_map_screen/info_icon.png" id="15_fphtr"]
 [ext_resource type="Script" path="res://main_menu/custom_level_ui.gd" id="15_sxgc2"]
 [ext_resource type="PackedScene" uid="uid://deiah42e8rpxf" path="res://main_menu/assets/level_selector_screen/add_level/add_level.tscn" id="16_kna47"]
 [ext_resource type="Script" path="res://main_menu/assets/level_selector_screen/world_name_popup/world_name_popup.gd" id="16_lfgc3"]
+[ext_resource type="Script" path="res://main_menu/assets/campaighn_map_screen/stats_menu.gd" id="16_lrq06"]
 [ext_resource type="PackedScene" uid="uid://dtjq6nqldvsw" path="res://main_menu/assets/level_selector_screen/world_name_popup/world_name_popup.tscn" id="17_l764b"]
 [ext_resource type="PackedScene" uid="uid://c7mqusokg1tj7" path="res://main_menu/assets/level_selector_screen/world_deletion_confirmation_screen/confirmation.tscn" id="19_7jcaw"]
 
@@ -177,6 +180,7 @@ metadata/_edit_horizontal_guides_ = [247.0, 66.0, 64.0]
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="main_ui" type="Control" parent="CanvasLayer"]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -257,7 +261,6 @@ libraries = {
 }
 
 [node name="campaign_ui" type="Control" parent="CanvasLayer"]
-visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -360,6 +363,115 @@ pivot_offset = Vector2(12, 12)
 texture_normal = ExtResource("8_wm2k5")
 texture_hover = ExtResource("9_41l30")
 
+[node name="completed" type="TextureRect" parent="CanvasLayer/campaign_ui/outline/inline"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 49.0
+offset_top = -104.0
+offset_right = 89.0
+offset_bottom = -64.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("14_ectbg")
+
+[node name="info" type="TextureButton" parent="CanvasLayer/campaign_ui/outline/inline"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -16.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = 16.0
+grow_horizontal = 0
+scale = Vector2(5, 5)
+pivot_offset = Vector2(16, 0)
+texture_normal = ExtResource("15_fphtr")
+
+[node name="stats_menu" type="Control" parent="CanvasLayer/campaign_ui/outline/inline"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("16_lrq06")
+
+[node name="outline" type="ColorRect" parent="CanvasLayer/campaign_ui/outline/inline/stats_menu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 200.0
+offset_top = 100.0
+offset_right = -200.0
+offset_bottom = -100.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(400, 300)
+
+[node name="inline" type="ColorRect" parent="CanvasLayer/campaign_ui/outline/inline/stats_menu/outline"]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(200, 300)
+color = Color(0, 0, 0, 1)
+
+[node name="close" type="Button" parent="CanvasLayer/campaign_ui/outline/inline/stats_menu/outline/inline"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -41.5
+offset_top = -47.0
+offset_right = 41.5
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("1_4norm")
+theme_override_font_sizes/font_size = 25
+text = "Close"
+
+[node name="Title" type="Label" parent="CanvasLayer/campaign_ui/outline/inline/stats_menu/outline/inline"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 23.0
+grow_horizontal = 2
+theme = ExtResource("1_4norm")
+theme_override_font_sizes/font_size = 30
+text = "Stats"
+horizontal_alignment = 1
+
+[node name="stats" type="Label" parent="CanvasLayer/campaign_ui/outline/inline/stats_menu/outline/inline"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 64.0
+offset_bottom = -89.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_4norm")
+theme_override_font_sizes/font_size = 30
+text = "Deaths : 0
+Jumps : 0"
+horizontal_alignment = 1
+
 [node name="settings_ui" parent="CanvasLayer" instance=ExtResource("14_k2au4")]
 visible = false
 
@@ -454,11 +566,11 @@ size_flags_vertical = 3
 [node name="Control" parent="CanvasLayer/custom_level_ui/outline/inline/ScrollContainer/VBoxContainer" instance=ExtResource("16_kna47")]
 layout_mode = 2
 
-[node name="world_name_popup" parent="CanvasLayer/custom_level_ui/outline/inline" instance=ExtResource("17_l764b")]
+[node name="confirmation" parent="CanvasLayer/custom_level_ui/outline/inline" instance=ExtResource("19_7jcaw")]
 visible = false
 layout_mode = 1
 
-[node name="confirmation" parent="CanvasLayer/custom_level_ui/outline/inline" instance=ExtResource("19_7jcaw")]
+[node name="world_name_popup" parent="CanvasLayer/custom_level_ui/outline/inline" instance=ExtResource("17_l764b")]
 visible = false
 layout_mode = 1
 
@@ -484,5 +596,7 @@ autostart = true
 [connection signal="pressed" from="CanvasLayer/campaign_ui/outline/inline/right" to="CanvasLayer/campaign_ui" method="_on_right_pressed"]
 [connection signal="pressed" from="CanvasLayer/campaign_ui/outline/inline/left" to="CanvasLayer/campaign_ui" method="_on_left_pressed"]
 [connection signal="pressed" from="CanvasLayer/campaign_ui/outline/inline/back" to="." method="_on_back_pressed"]
+[connection signal="pressed" from="CanvasLayer/campaign_ui/outline/inline/info" to="CanvasLayer/campaign_ui" method="_on_info_pressed"]
+[connection signal="pressed" from="CanvasLayer/campaign_ui/outline/inline/stats_menu/outline/inline/close" to="CanvasLayer/campaign_ui" method="_on_close_pressed"]
 [connection signal="pressed" from="CanvasLayer/custom_level_ui/outline/inline/back" to="." method="_on_back_pressed"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

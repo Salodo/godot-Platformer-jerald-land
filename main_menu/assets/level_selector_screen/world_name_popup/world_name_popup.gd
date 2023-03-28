@@ -2,7 +2,7 @@ extends Control
 
 signal make_world
 
-@onready var edt_world_name = $outline/inline/LineEdit
+@onready var edt_world_name = $world_name_popup/inline/LineEdit
 
 func open():
 	show()

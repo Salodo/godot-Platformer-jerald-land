@@ -1,11 +1,4 @@
-res://level_builder/level_builder.tscn
-res://theming/default.tres
 res://main_menu/main_menu.tscn
-res://campaighn_maps.gd
-res://main_menu/campaign_ui.gd
-res://main_menu/main_menu.gd
-res://bigscripts.gd
-res://source/player/player.gd
-res://source/player/player.tscn
+res://theming/default.tres
 res://main_menu/assets/level_selector_screen/world_name_popup/world_name_popup.gd
-res://main_menu/assets/campaighn_map_screen/stats_menu.gd
+res://main_menu/assets/level_selector_screen/world_name_popup/world_name_popup.tscn

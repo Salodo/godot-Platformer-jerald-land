@@ -61,9 +61,16 @@ var settings:Dictionary = {
 "ffff40"
 #CUSTOMIZATION related
 
+signal color_changed
+
 func customize(nodes:Array = []):
 	for i in nodes:
 		i.modulate = Color(settings["customization"]["color"])
+
+func change_color(color:String):
+	settings["customization"]["color"] = color
+	save_settings()
+	emit_signal("color_changed")
 
 #SAVING related
 

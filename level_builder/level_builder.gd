@@ -4,6 +4,7 @@ extends Node2D
 @onready var cursor = $Cursor
 @onready var block_container = $block_folder
 @onready var jerald = $jerald
+@onready var main_ui = $CanvasLayer/Control
 @onready var properties_menu = $CanvasLayer/Control/properties/ScrollContainer/MarginContainer/VBoxContainer
 @onready var pause_menu = $CanvasLayer/pause_ui
 
@@ -42,6 +43,11 @@ func _ready():
 	previous_mouse_snapped_pos = position_to_grid(get_global_mouse_position())
 	
 	pause_menu.connect("_on_pause_ui_close", self._on_pause_ui_close)
+	Bigscripts.connect("color_changed", self.update_color)
+	update_color()
+
+func update_color():
+	Bigscripts.customize([self, pause_menu, main_ui])
 
 func _on_pause_ui_close():
 	pause_menu.close()

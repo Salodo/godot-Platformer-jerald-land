@@ -31,7 +31,12 @@ func _ready():
 		default_ui.hide()
 	
 	pause_ui.connect("_on_pause_ui_close", self._on_pause_ui_close)
-	
+	Bigscripts.connect("color_changed", self.update_color)
+	update_color()
+
+func update_color():
+	Bigscripts.customize([Bigscripts.get_tree().current_scene,default_ui,win_ui,pause_ui])
+
 func _on_pause_ui_close():
 	pause_ui.close()
 	in_ui = false

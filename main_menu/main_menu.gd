@@ -41,8 +41,11 @@ func _ready():
 	jerald_animation.play("jumping")
 	
 	settings_ui.connect("_on_settings_ui_close", self._on_back_pressed)
-	
-	Bigscripts.customize([main_ui,campaign_ui,settings_ui])
+	Bigscripts.connect("color_changed", self.update_color)
+	update_color()
+
+func update_color():
+	Bigscripts.customize([main_ui,campaign_ui,custom_level_ui])
 	
 
 

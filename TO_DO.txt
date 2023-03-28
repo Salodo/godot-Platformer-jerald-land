@@ -1,8 +1,6 @@
-launch_pads
-
-customization options
-
 audio
 music
+
+renaming custom levels
 
 campaign levels

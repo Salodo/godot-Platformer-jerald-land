@@ -5,10 +5,10 @@ res://level_builder/level_builder.tscn::615db96e7365b384e157e20c0b3ceba6::168001
 res://level_loader/main.tscn::f6544881e2e24fdaf30c4cf00e14743c::1680009203::res://.godot/exported/133200997/export-086fe091f3de19fb1864ff2b6b9e19be-main.scn
 res://main_menu/assets/level_selector_screen/add_level/add_level.tscn::abfc6184ce30464e50d6cdcf0feb5f5f::1680009203::res://.godot/exported/133200997/export-5a81e91319b38bd81f43098fb2e1bcf1-add_level.scn
 res://main_menu/assets/level_selector_screen/world_deletion_confirmation_screen/confirmation.tscn::9cb4fb5109a456a71c7394efcb67e717::1680009203::res://.godot/exported/133200997/export-2fec9edd3389746606bf1efb3c9b0631-confirmation.scn
-res://main_menu/assets/level_selector_screen/world_name_popup/world_name_popup.tscn::be32e5e04c3c6ffa3ab24f79b6d2fa74::1680009203::res://.godot/exported/133200997/export-626580ee023343460b4298413882149b-world_name_popup.scn
+res://main_menu/assets/level_selector_screen/world_name_popup/world_name_popup.tscn::be32e5e04c3c6ffa3ab24f79b6d2fa74::1680023926::res://.godot/exported/133200997/export-626580ee023343460b4298413882149b-world_name_popup.scn
 res://main_menu/assets/level_selector_screen/world_preset/world_1.tscn::1546a7fb1eea36a6d804c6916c747e9f::1680009203::res://.godot/exported/133200997/export-ae0f62de32a6b7cef6d22ebf55ff3a76-world_1.scn
 res://main_menu/assets/spinning_jeralds/spinning_jerald.tscn::776de1056303651547fce4ed4744d4db::1680009203::res://.godot/exported/133200997/export-0a3d3dc76c5e7e8540e62721f769f663-spinning_jerald.scn
-res://main_menu/main_menu.tscn::944358ee4e4110ebde2ba584d4ac57bb::1680023272::res://.godot/exported/133200997/export-07bdc61c2b1454d495347d522594be18-main_menu.scn
+res://main_menu/main_menu.tscn::9b226db4269b241a9e44f567d35be6ef::1680024025::res://.godot/exported/133200997/export-07bdc61c2b1454d495347d522594be18-main_menu.scn
 res://source/block_scenes/block/block.tscn::8fa3abe19b953fd787dc6cc32be0d2cc::1680009203::res://.godot/exported/133200997/export-d0a7e8a455fed542bd97808b204c0822-block.scn
 res://source/block_scenes/checkpoint/block.tscn::70eb23050012bc03a6ed6611b5ac21ce::1680009203::res://.godot/exported/133200997/export-993801408253e0637a9d7970a4de0f4c-block.scn
 res://source/block_scenes/default_block/block.tscn::88a238f61561e62bc5c6bab34d494239::1680009203::res://.godot/exported/133200997/export-3e718a864be67b03dc435e314c103eb8-block.scn
@@ -19,5 +19,5 @@ res://source/block_scenes/text_block/block.tscn::b55a77ad9b993cfd317060ff179b888
 res://source/player/player.tscn::ca56ca625105555851217b95d5a1bf2d::1680014805::res://.godot/exported/133200997/export-c8bb9864c182f785a23394bd1c245656-player.scn
 res://source/shared_ui/pause_menu/pause_menu.tscn::2639f267d0a6a0631577e482c7cfbaf9::1680009203::res://.godot/exported/133200997/export-4439183392a13c69069c5bdb0ab9113e-pause_menu.scn
 res://source/shared_ui/settings_ui/settings_ui.tscn::8a4c220a80a56e8e71c408a5aab7e72e::1680009203::res://.godot/exported/133200997/export-f413fdc30272f494b200bc2002e633ad-settings_ui.scn
-res://theming/default.tres::1279a39d329ff4dca31edeeceebac444::1680023272::res://.godot/exported/133200997/export-1c735383348898f32b3c7350ec4d0525-default.res
+res://theming/default.tres::99cfee62b94a3370e01fe0fbd8f14bac::1680023675::res://.godot/exported/133200997/export-1c735383348898f32b3c7350ec4d0525-default.res
 res://theming/default_style_box.tres::d81bdf6073f33f5407980e4a559ffc14::1680009203::res://.godot/exported/133200997/export-3e7af3363e87216f34327565faf42650-default_style_box.res

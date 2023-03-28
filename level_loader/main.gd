@@ -6,5 +6,3 @@ extends Node2D
 func _ready():
 	#print(JSON.parse_string('{"hello":5}')["hello"])
 	Bigscripts.load_map(Bigscripts.map_data["m"], block_folder)
-
-

@@ -6,6 +6,7 @@ signal _on_settings_ui_close
 @onready var keybinds = $outline/inline/keybinds
 @onready var keybind_popup = $outline/inline/keybinds/keybind_popup
 @onready var customization = $outline/inline/customization
+@onready var colour_button_container = $outline/inline/customization/HFlowContainer
 
 @onready var keyBind_left = $outline/inline/keybinds/ScrollContainer/VBoxContainer/left
 @onready var keyBind_right = $outline/inline/keybinds/ScrollContainer/VBoxContainer/right
@@ -15,6 +16,7 @@ var listening_to_keybinds:bool = false
 var mouse_hover_index:int = 0
 
 var actions = ["none", "left", "right", "jump"]
+var colours = ["FF00FF","FF0000","0000FF","00FFFF","00FF00","FFFF00","FFFFFF"]
 
 func open():
 	update()
@@ -25,6 +27,8 @@ func close():
 
 func _on_back_pressed():
 	self.emit_signal("_on_settings_ui_close")
+
+#Handles keybinds
 
 func _on_keybinds_pressed():
 	main.hide()
@@ -86,5 +90,16 @@ func _on_jump_mouse_entered():
 func _on_jump_mouse_exited():
 	mouse_hover_index = 0
 
+#Handles customization screen
+func _ready():
+	Bigscripts.connect("color_changed", self.update_color)
+	update_color()
+	
+	for i in colours:
+		var new_colour_box = load("res://source/shared_ui/settings_ui/customize_button/texture_button.tscn").instantiate()
+		new_colour_box.register_colour(i)
+		colour_button_container.add_child(new_colour_box)
 
-
+func update_color():
+	$outline.self_modulate = Color(Bigscripts.settings["customization"]["color"])
+	Bigscripts.customize([main, keybinds, $outline/inline/customization/color])

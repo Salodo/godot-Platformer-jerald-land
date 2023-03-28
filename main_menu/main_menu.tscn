@@ -15,7 +15,7 @@
 [ext_resource type="Texture2D" uid="uid://c7ptg1o18x78r" path="res://main_menu/assets/buttons/settings_selected.png" id="8_y5t64"]
 [ext_resource type="Texture2D" uid="uid://cgsnfqj18rr3q" path="res://main_menu/assets/buttons/back_selected.png" id="9_41l30"]
 [ext_resource type="Texture2D" uid="uid://byudx5p0va63l" path="res://main_menu/assets/campaighn_map_screen/check_mark.png" id="14_ectbg"]
-[ext_resource type="PackedScene" uid="uid://biao7eeq4hdvg" path="res://source/shared_ui/settings_ui/settings_ui.tscn" id="14_k2au4"]
+[ext_resource type="PackedScene" uid="uid://mn7uim1ya1ci" path="res://source/shared_ui/settings_ui/settings_ui.tscn" id="14_k2au4"]
 [ext_resource type="Texture2D" uid="uid://depbomb4atpuu" path="res://main_menu/assets/campaighn_map_screen/info_icon.png" id="15_fphtr"]
 [ext_resource type="Script" path="res://main_menu/custom_level_ui.gd" id="15_sxgc2"]
 [ext_resource type="PackedScene" uid="uid://deiah42e8rpxf" path="res://main_menu/assets/level_selector_screen/add_level/add_level.tscn" id="16_kna47"]
@@ -475,6 +475,7 @@ horizontal_alignment = 1
 visible = false
 
 [node name="custom_level_ui" type="Control" parent="CanvasLayer"]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0

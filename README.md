@@ -1,33 +1,31 @@
-JERALD_LAND
-------------
+# JERALD_LAND
 
-Small platformer with a level editor
+A platformer made in Godot
 
-Developemt on godot 4.0-Stable
-- DOWNLOAD LINK https://godotengine.org/
+Developed with [Godot-4 Stable](https://godotengine.org/ "Download")
 
-_Features_
+# Features
 
 ## blocks
 
-  -default block
-  -spikes
-  -checkpoints
-  -jump pads
+* default block
+* spikes
+* checkpoints
+* jump pads
   
 ## level editor
 
-  -place tiles
-  -destroy tiles
-  -move player
-  -import and export levels to clipboard
-  -playtest
-  -edit block property
-  -pick block
-  -pick block with properties
+* place tiles
+* destroy tiles
+* move player
+* import/export levelst to clipboard
+* playtest
+* edit block property
+* pick block
+* pick block with properties
 
-## Plans
+## To do
 
-  -add multiplayer
-  -add sound
-  -add music
+* multiplayer
+* SFX
+* music

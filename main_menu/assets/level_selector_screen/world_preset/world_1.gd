@@ -4,6 +4,7 @@ var lvl_dat:Dictionary = {}
 var lvl_path:String = ""
 
 signal reload_map_screen
+signal delete_world
 
 func change_destination(path:String):
 	var file = FileAccess.open(path, FileAccess.READ)
@@ -26,5 +27,10 @@ func _on_editor_pressed():
 	get_tree().change_scene_to_file("res://level_builder/level_builder.tscn")
 
 func _on_delete_pressed():
-	DirAccess.remove_absolute(lvl_path)
-	emit_signal("reload_map_screen")
+	emit_signal("delete_world",lvl_path)
+	#DirAccess.remove_absolute(lvl_path)
+	#emit_signal("reload_map_screen")
+
+
+func _on_rename_pressed():
+	pass # Replace with function body.

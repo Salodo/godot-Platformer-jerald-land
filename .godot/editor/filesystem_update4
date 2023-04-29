@@ -1,2 +1,8 @@
 res://main_menu/main_menu.tscn
 res://theming/default.tres
+res://main_menu/assets/level_selector_screen/world_preset/world_1.tscn
+res://main_menu/assets/level_selector_screen/world_preset/world_1.gd
+res://main_menu/custom_level_ui.gd
+res://main_menu/assets/level_selector_screen/world_deletion_confirmation_screen/confirmation.tscn
+res://main_menu/assets/level_selector_screen/world_deletion_confirmation_screen/confirmation.gd
+res://level_builder/level_builder.tscn

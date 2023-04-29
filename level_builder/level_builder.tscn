@@ -65,6 +65,7 @@ anchor_right = 1.0
 offset_left = -126.0
 offset_bottom = 64.0
 grow_horizontal = 0
+tooltip_text = "Export to clipboard"
 theme = ExtResource("4_i837x")
 text = "export"
 
@@ -77,6 +78,7 @@ offset_left = -126.0
 offset_top = 64.0
 offset_bottom = 128.0
 grow_horizontal = 0
+tooltip_text = "Import from clipboard"
 theme = ExtResource("4_i837x")
 text = "import
 "

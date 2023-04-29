@@ -101,6 +101,17 @@ func save_map():
 	file.store_var(map_data)
 	file = null
 
+func rename_map(lvl_path:String,lvl_name:String):
+	var file = FileAccess.open(lvl_path, FileAccess.READ)
+	var lvl_map_dat:Dictionary = file.get_var()
+	file = null
+	
+	lvl_map_dat["t"] = lvl_name
+	
+	file = FileAccess.open(lvl_path, FileAccess.WRITE)
+	file.store_var(lvl_map_dat)
+	file = null
+
 #STATS
 func increase_stat(stat_name:String, amount:int=1):
 	if is_in_campaign_map:

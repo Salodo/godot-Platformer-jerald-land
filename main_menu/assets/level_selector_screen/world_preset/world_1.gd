@@ -5,12 +5,12 @@ var lvl_path:String = ""
 
 signal reload_map_screen
 signal delete_world
+signal rename_world
 
 func change_destination(path:String):
 	var file = FileAccess.open(path, FileAccess.READ)
 	lvl_dat = file.get_var()
 	file = null
-	
 	lvl_path = path
 	get_node("Label").text = lvl_dat["t"]
 
@@ -33,4 +33,4 @@ func _on_delete_pressed():
 
 
 func _on_rename_pressed():
-	pass # Replace with function body.
+	emit_signal("rename_world",lvl_path,true,lvl_dat["t"])

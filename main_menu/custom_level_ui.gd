@@ -4,10 +4,13 @@ var levels_path = Bigscripts.levels_path
 @onready var main_container = $outline/inline/ScrollContainer/VBoxContainer
 @onready var world_name_popup = $outline/inline/world_name_popup
 @onready var confirmation_popup = $outline/inline/confirmation
+@onready var world_rename_popup = $outline/inline/world_rename_popup
+
 
 func _ready():
 	world_name_popup.connect("make_world", self.make_world)
 	confirmation_popup.connect("_delete_world", self.delete_world)
+	world_rename_popup.connect("rename_world", self._on_world_rename)
 
 func open():
 	self.show()
@@ -31,6 +34,7 @@ func load_worlds():
 		new_world_option.change_destination(level_path)
 		new_world_option.connect("reload_map_screen", self.load_worlds)
 		new_world_option.connect("delete_world", self.delete_world)
+		new_world_option.connect("rename_world" ,self._on_world_rename)
 		
 		main_container.add_child(new_world_option)
 		
@@ -61,4 +65,12 @@ func delete_world(_path:String,ask=true):
 		confirmation_popup.open(_path)
 	else:
 		DirAccess.remove_absolute(_path)
+		load_worlds()
+
+func _on_world_rename(_path:String,ask=true,_name:String=""):
+	if ask:
+		world_rename_popup.open(_path,_name)
+	else:
+		print("MMMM")
+		Bigscripts.rename_map(_path,_name)
 		load_worlds()

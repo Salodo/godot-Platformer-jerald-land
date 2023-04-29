@@ -1,0 +1,101 @@
+[gd_scene load_steps=3 format=3 uid="uid://de2geglug4oam"]
+
+[ext_resource type="Script" path="res://main_menu/assets/level_selector_screen/world_rename_popup/world_rename_popup.gd" id="1_m78n5"]
+[ext_resource type="Theme" uid="uid://duscod7gw58fs" path="res://theming/default.tres" id="2_vee88"]
+
+[node name="world_rename_popup" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_m78n5")
+
+[node name="world_rename_popup" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 100.0
+offset_top = 100.0
+offset_right = -100.0
+offset_bottom = -100.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(400, 300)
+
+[node name="inline" type="ColorRect" parent="world_rename_popup"]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(200, 300)
+color = Color(0, 0, 0, 1)
+
+[node name="close" type="Button" parent="world_rename_popup/inline"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = -65.0
+offset_right = 103.0
+offset_bottom = -20.0
+grow_vertical = 0
+theme = ExtResource("2_vee88")
+theme_override_font_sizes/font_size = 25
+text = "Close"
+
+[node name="apply" type="Button" parent="world_rename_popup/inline"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -103.0
+offset_top = -67.0
+offset_right = -20.0
+offset_bottom = -20.0
+grow_horizontal = 0
+grow_vertical = 0
+theme = ExtResource("2_vee88")
+theme_override_font_sizes/font_size = 25
+text = "Apply"
+
+[node name="Title" type="Label" parent="world_rename_popup/inline"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 23.0
+grow_horizontal = 2
+theme = ExtResource("2_vee88")
+theme_override_font_sizes/font_size = 30
+text = "Please Type new level name"
+horizontal_alignment = 1
+
+[node name="LineEdit" type="LineEdit" parent="world_rename_popup/inline"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 20.0
+offset_top = -25.0
+offset_right = -20.0
+offset_bottom = 26.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_vee88")
+placeholder_text = "[Type name here]"
+alignment = 1
+max_length = 20
+
+[connection signal="pressed" from="world_rename_popup/inline/close" to="." method="_on_close_pressed"]
+[connection signal="pressed" from="world_rename_popup/inline/apply" to="." method="_on_apply_pressed"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://b17uy17vhnsk0"]
+[gd_scene load_steps=30 format=3 uid="uid://b17uy17vhnsk0"]
 
 [ext_resource type="Theme" uid="uid://duscod7gw58fs" path="res://theming/default.tres" id="1_4norm"]
 [ext_resource type="Script" path="res://main_menu/main_menu.gd" id="1_x2l4x"]
@@ -22,6 +22,7 @@
 [ext_resource type="Script" path="res://main_menu/assets/campaighn_map_screen/stats_menu.gd" id="16_lrq06"]
 [ext_resource type="PackedScene" uid="uid://dtjq6nqldvsw" path="res://main_menu/assets/level_selector_screen/world_name_popup/world_name_popup.tscn" id="17_l764b"]
 [ext_resource type="PackedScene" uid="uid://c7mqusokg1tj7" path="res://main_menu/assets/level_selector_screen/world_deletion_confirmation_screen/confirmation.tscn" id="19_7jcaw"]
+[ext_resource type="PackedScene" uid="uid://de2geglug4oam" path="res://main_menu/assets/level_selector_screen/world_rename_popup/world_rename_popup.gd.tscn" id="22_1sis3"]
 
 [sub_resource type="Animation" id="Animation_ai4fr"]
 length = 0.001
@@ -475,7 +476,6 @@ horizontal_alignment = 1
 visible = false
 
 [node name="custom_level_ui" type="Control" parent="CanvasLayer"]
-visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -569,6 +569,10 @@ visible = false
 layout_mode = 1
 
 [node name="world_name_popup" parent="CanvasLayer/custom_level_ui/outline/inline" instance=ExtResource("17_l764b")]
+visible = false
+layout_mode = 1
+
+[node name="world_rename_popup" parent="CanvasLayer/custom_level_ui/outline/inline" instance=ExtResource("22_1sis3")]
 visible = false
 layout_mode = 1
 
